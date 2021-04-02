@@ -312,6 +312,11 @@ Devise.setup do |config|
   # My added configuration
   #-----------------------
 
+  # Facebook auth configuration
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email'
+
+  # Linkedin auth configuration
+  config.omniauth :linkedin, ENV['LINKEDIN_APP_ID'], ENV['LINKEDIN_APP_SECRET']
+
 
 end

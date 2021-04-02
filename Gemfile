@@ -60,6 +60,11 @@ gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 
 # User Authentication with Facebook
 gem 'omniauth-facebook'
+
+# User Authentication with Linkedin
+# gem "omniauth", "~> 1.9.1"
+gem "omniauth-linkedin-oauth2"
+
 # Development ENV Variables
 gem 'figaro'
 
