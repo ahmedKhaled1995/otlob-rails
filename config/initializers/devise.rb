@@ -313,7 +313,8 @@ Devise.setup do |config|
   #-----------------------
 
   # Facebook auth configuration
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email'
+  
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], {scope: 'email', info_fields: 'email,name,verified,gender,link'}
 
   # Linkedin auth configuration
   config.omniauth :linkedin, ENV['LINKEDIN_APP_ID'], ENV['LINKEDIN_APP_SECRET']
