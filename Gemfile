@@ -70,3 +70,6 @@ gem 'figaro'
 
 # Fixing authentication error
 gem "omniauth-rails_csrf_protection"
+
+# Used for providing /admin route (like django admin)
+gem 'rails_admin', '~> 2.0'
