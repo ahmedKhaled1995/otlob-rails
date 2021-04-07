@@ -1,0 +1,23 @@
+<%= render partial: 'form' %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends.each_with_index  do |friend, index| %>
+    <tr>
+      <th scope="row"><%= index+1 %></th>
+      <td><%= friend.email %></td>
+      <td>
+        <%= link_to "Unfriend", friend_path(friend),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
