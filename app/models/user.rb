@@ -1,11 +1,12 @@
 class User < ApplicationRecord
+
+  # has_many :friends, :foreign_key => "users", :class_name => "User" 
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
    :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :linkedin]
 
-
-  has_many :friends, :foreign_key => "friends", :class_name => "User" 
 
 
   def self.connect_to_facebook(auth, signed_in_resource=nil)
