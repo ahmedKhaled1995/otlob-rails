@@ -11,19 +11,33 @@
   </head>
 
   <body>
-  
-    <% if user_signed_in? %>
-      <%= link_to "Edit profile", edit_user_registration_path %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path  %> |
-      <%= link_to "Login", new_user_session_path  %>
-    <% end %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
-
+    <!-- Navbar -->
+    <%= render partial: 'layouts/nav' %>
+      <!-- Container -->
+      <div class="container">
+        <!-- Alerts -->
+        <div class="mt-4 mb-4">
+          <% if flash[:notice] %>
+          <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:notice]%>
+          </div>
+          <% elsif flash[:error]%>
+          <div class="alert alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:error]%>
+          </div>
+          <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:alert]%>
+        </div>
+        <% end %>
+        </div>
+        
+        <!-- Main page Body -->
+        <%= yield %>
+    </div>
   </body>
+
 </html>
