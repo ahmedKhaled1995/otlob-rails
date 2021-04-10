@@ -1,0 +1,64 @@
+<!-- Adding Css file -->
+<%= stylesheet_pack_tag 'groups/index' %>
+
+<!-- Adding JavaScript file -->
+<%= javascript_pack_tag 'groups/index' %>
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="list-group" style="padding-bottom:15px;">
+          <div class="card">
+            <div class="card-body">
+
+              <a id="shmenulinks" class="nav-link" style="border-radius: 0.25rem; cursor: pointer; width: 100%;"
+               data-toggle="collapse" aria-expanded="true" aria-controls="menulinks" data-target="#menulinks">
+               <i class="fa fa-bars" aria-hidden="true"></i> Open/Close menu</a>
+               
+              <div id="menulinks" class="nav nav-pills collapse">
+
+                <%= render partial: 'form' %>
+                <% @groups.each do |group| %>
+                    <div class="d-flex justify-content-between mb-3">
+                      <%= link_to group.name, group_path(group), class: "nav-link", style: 'width: 100%;'  %>
+                      <%= link_to "Delete", group_path(group), method: :delete, class: 'btn btn-danger',
+                       data: { confirm: "Are you sure?" } %>
+                    </div>
+                <% end %>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="conteudo" class="col-lg-9">
+        <div class="card">
+          <div class="card-body">
+            <% if @group_members %>
+              <% if @group_members.count == 0 %>
+                <h3>No members in the group</h3>
+              <% else %>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div><h5 class="font-weight-light">User</h5></div>
+                        <div class="">
+                            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a> 
+                        </div>
+                    </li>
+                </ul>
+              <% end %>
+            <% else %>
+                <h3>Please select a group</h3>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<%# target="blank" %>
+
+<%# <a style="width: 100%;" href="#" class="nav-link "> Home</a>
+<a style="width: 100%;" href="#" class="nav-link "> Projects</a>
+<a style="width: 100%;" href="#" class="nav-link "> Jobs</a>
+<a style="width: 100%;" href="#" class="nav-link "> Logout</a> %>

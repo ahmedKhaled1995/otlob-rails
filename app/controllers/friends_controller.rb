@@ -21,6 +21,14 @@ class FriendsController < ApplicationController
 
     def destroy
         @friend = Friend.find(params[:id])
+
+        # Before we delete the friend, we must first check if this friend
+        # is added to a group 
+        @friend.group_friends.each do |group_friend|
+            group_friend.destroy
+        end
+
+        # Now we destroy the friend
         @friend.destroy
     
         redirect_to action: "index"
@@ -28,7 +36,9 @@ class FriendsController < ApplicationController
 
     private
     def friend_params
-        puts params
+        # puts '-------------->>>>>'
+        # puts params
+        # puts '--------------<<<<<'
         # params.require(:friend).permit(:email)
         params.permit(:email)
     end
