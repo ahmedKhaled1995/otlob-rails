@@ -16,7 +16,7 @@
       <th scope="row"><%= index+1 %></th>
       <td><%= friend.email %></td>
       <td>
-        <%= link_to "Unfriend", friend_path(friend),
+        <%= link_to "Unfriend", friend_path(friend), class: 'btn btn-danger',
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
       </td>

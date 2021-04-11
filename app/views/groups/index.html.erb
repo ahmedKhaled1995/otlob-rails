@@ -34,17 +34,24 @@
       <div id="conteudo" class="col-lg-9">
         <div class="card">
           <div class="card-body">
-            <% if @group_members %>
-              <% if @group_members.count == 0 %>
+            <% if @group && @group.group_friends %>
+
+              <%= render partial: 'group_friends/form' %>
+
+              <% if @group.group_friends.count == 0 %>
                 <h3>No members in the group</h3>
               <% else %>
+
                 <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div><h5 class="font-weight-light">User</h5></div>
-                        <div class="">
-                            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a> 
-                        </div>
-                    </li>
+                     <% @group.group_friends.each do |group_friend| %>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div><h5 class="font-weight-light"><%= group_friend.friend.email %></h5></div>
+                            <div class="">
+                                <%= link_to "Delete", group_group_friend_path(@group, group_friend), method: :delete, class: 'btn btn-danger',
+                                  data: { confirm: "Are you sure?" } %>
+                            </div>
+                        </li>
+                    <% end %>
                 </ul>
               <% end %>
             <% else %>
