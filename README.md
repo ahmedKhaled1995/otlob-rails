@@ -7,7 +7,7 @@
 3) You migth get "Required ruby-2.6.6 is not installed." , if so you will run the command:
 		rvm install "ruby-2.6.6"
 		
-4) Run:   bubdle install
+4) Run:   bundle install
 
 5) Run:   npm i
 
