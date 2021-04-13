@@ -65,6 +65,9 @@ gem 'omniauth-facebook'
 # gem "omniauth", "~> 1.9.1"
 gem "omniauth-linkedin-oauth2"
 
+# User Authentication with Gmail
+gem 'omniauth-google-oauth2'
+
 # Development ENV Variables
 gem 'figaro'
 

@@ -319,5 +319,9 @@ Devise.setup do |config|
   # Linkedin auth configuration
   config.omniauth :linkedin, ENV['LINKEDIN_APP_ID'], ENV['LINKEDIN_APP_SECRET']
 
+  # Gmail auth configuration
+  config.omniauth :google_oauth2, ENV['GMAIL_APP_ID'], ENV['GMAIL_APP_SECRET'], scope: 'userinfo.email,userinfo.profile', skip_jwt: true
+
+
 
 end
