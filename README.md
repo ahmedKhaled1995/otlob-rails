@@ -15,6 +15,6 @@
 
 7) Run:  rails s    then visit localhost:3000
 
-PS if an error occurs when visiting the localhost, close the server and run the following commands:-
+PS if an error occurs when visiting the localhost, close the server and run the following commands:
 	1) gem uninstall sqlite3
 	2) gem install sqlite3
