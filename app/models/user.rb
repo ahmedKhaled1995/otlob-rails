@@ -9,6 +9,13 @@ class User < ApplicationRecord
    :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :linkedin, :google_oauth2]
 
 
+  def get_image
+    if image
+      return image
+    end
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    url = "https://gravatar.com/avatar/#{gravatar_id}?s=32&d=identicon&r=PG"
+  end 
 
   def self.connect_to_facebook(auth, signed_in_resource=nil)
     puts "------>>>>>" 

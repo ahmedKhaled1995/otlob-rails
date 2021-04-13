@@ -1,6 +1,16 @@
 class FriendsController < ApplicationController
     def index
         @friends = Friend.where(user_id: current_user.id)
+        @pics = Array.new
+        @friends.each do |friend|
+            user = User.find_by(email: friend.email)
+            if user
+                @pics.push(user.get_image)
+            else
+                @pics.push(helpers.get_avatar(friend.email))
+            end
+        end
+        puts @pics
     end
 
     def new
