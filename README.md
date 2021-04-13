@@ -1,6 +1,6 @@
 # otlob-rails
 
-1) Run:   git clone REPO_LINK
+1) Run:   git clone https://github.com/ahmedKhaled1995/otlob-rails.git
 
 2) Run:   cd otlob-rails
 
