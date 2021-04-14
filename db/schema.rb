@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_024443) do
+ActiveRecord::Schema.define(version: 2021_04_14_225326) do
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -44,6 +44,10 @@ ActiveRecord::Schema.define(version: 2021_04_14_024443) do
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id", null: false
+    t.integer "user"
+    t.integer "user_id"
+    t.index ["order_id"], name: "index_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -82,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_024443) do
   add_foreign_key "group_friends", "friends"
   add_foreign_key "group_friends", "groups"
   add_foreign_key "groups", "users"
+  add_foreign_key "items", "orders"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end
