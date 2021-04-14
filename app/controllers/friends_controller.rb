@@ -10,7 +10,6 @@ class FriendsController < ApplicationController
                 @pics.push(helpers.get_avatar(friend.email))
             end
         end
-        puts @pics
     end
 
     def new
