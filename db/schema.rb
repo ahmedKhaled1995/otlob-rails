@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_024443) do
+ActiveRecord::Schema.define(version: 2021_04_14_214104) do
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2021_04_14_024443) do
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notification_beta", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "friend_id", null: false
+    t.boolean "accepted", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_notification_beta_on_friend_id"
+    t.index ["user_id"], name: "index_notification_beta_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -82,6 +92,8 @@ ActiveRecord::Schema.define(version: 2021_04_14_024443) do
   add_foreign_key "group_friends", "friends"
   add_foreign_key "group_friends", "groups"
   add_foreign_key "groups", "users"
+  add_foreign_key "notification_beta", "friends"
+  add_foreign_key "notification_beta", "users"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end
