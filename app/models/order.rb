@@ -6,5 +6,5 @@ class Order < ApplicationRecord
     has_many :items, dependent: :destroy
     enum order_for: [:breakfast, :launch, :dinner]
     delegate :full_name, to: :user, allow_nil: true
-    # enum status: [:incomplete, :finish, :waiting]
+    enum status: [:incomplete, :waiting, :delivered, :canceled]
 end

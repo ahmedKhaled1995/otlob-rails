@@ -17,10 +17,19 @@ class FriendsController < ApplicationController
     end
 
     def create
+        # First we check if user exists or not
+        email = friend_params.require(:email)
+        #puts email
+        user = User.find_by(email: email)
+        #puts "------------"
+        #puts user
+        if !user
+            redirect_to friends_path, alert: "The user doesn't exist!"
+            return
+        end
+        # Friend exists, eveything is well
         @friend = Friend.new(friend_params)
-
         @friend.user_id = current_user.id
-
         if @friend.save
             redirect_to action: "index"
         else
