@@ -12,25 +12,29 @@
   </thead>
   <tbody>
   <tr>
-      <% current_user.orders.each do |order| %>
-        <td>
-        <%= order.order_for %>
-        </td>
-        <td>
-        <%= link_to order.restaurant.name, order %>
-        </td>
-        <td> <% order.friends %> </td>
-        <td></td>
-        <td>
-        <%= order.status %>
-        </td>
-        <td>
-        <%= link_to "View", order %>
-        <%= link_to "Finish", order %> 
-        <%= link_to "Cancel", order,
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %></td>
-        </td>
+      <% @orders.each do |order| %>
+        <% order.friends.each do |friend| %>
+          <% if User.find_by(email: friend.email).id == current_user.id || current_user.id == order.user_id %>
+          <td>
+          <%= order.order_for %>
+          </td>
+          <td>
+          <%= link_to order.restaurant.name, order %>
+          </td>
+          <td> <% order.friends %> </td>
+          <td></td>
+          <td>
+          <%= order.status %>
+          </td>
+          <td>
+          <%= link_to "View", order %>
+          <%= link_to "Finish", order %> 
+          <%= link_to "Cancel", order,
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } %></td>
+          </td>
+          <% end %>
+        <% end %>
       <% end %>
   </tr>
   

@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_102627) do
+ActiveRecord::Schema.define(version: 2021_04_15_222717) do
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_friends_on_order_id"
     t.index ["user_id"], name: "index_friends_on_user_id"
   end
 
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_102627) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_groups_on_order_id"
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
@@ -45,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_102627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order_id", null: false
+    t.integer "user"
     t.integer "user_id"
     t.index ["order_id"], name: "index_items_on_order_id"
   end
@@ -82,9 +87,11 @@ ActiveRecord::Schema.define(version: 2021_04_15_102627) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "friends", "orders"
   add_foreign_key "friends", "users"
   add_foreign_key "group_friends", "friends"
   add_foreign_key "group_friends", "groups"
+  add_foreign_key "groups", "orders"
   add_foreign_key "groups", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "orders", "restaurants"
