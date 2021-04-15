@@ -2,12 +2,8 @@ class User < ApplicationRecord
 
   has_many :friends
   has_many :groups
-<<<<<<< HEAD
-  has_many :notification_betas
-=======
   has_many :orders
   has_many :items
->>>>>>> a16a825c81b44a8575a78836d6eede4dd667c942
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
