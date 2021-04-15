@@ -1,0 +1,16 @@
+<%= form_with model: [ @order, @item || @order.items.build ] do |form| %>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      
+        <%= form.label :amount %>
+        <%= form.number_field :amount, step: :any %>
+  
+        <%= form.label :price %>
+        <%= form.number_field :price, step: :any %>
+      
+        <%= form.label :comment %>
+        <%= form.text_field :comment %>
+  
+        <%= form.submit %>
+  <% end %>
+  

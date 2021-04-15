@@ -1,3 +1,3 @@
 class Restaurant < ApplicationRecord
-    validates :name, presence: true
+    validates :name, presence: false
 end

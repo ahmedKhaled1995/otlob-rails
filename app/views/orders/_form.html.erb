@@ -1,0 +1,15 @@
+
+<%= form_with model: order do |form| %>
+  <div>
+  <%= form.label :order_for %><br>
+  <%= form.select :order_for, ['breakfast', 'launch', 'dinner'], selected: 'breakfast' %>
+  </div>
+  <div >
+      <%= form.label :from %><br>
+      <%= form.text_field :from %>
+  </div>
+  <div >
+      <%= form.submit %>
+    </div>
+<% end %>
+  

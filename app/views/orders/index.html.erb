@@ -1,0 +1,41 @@
+<h1>Orders</h1>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+  <th scope="col">Order   </th>
+  <th scope="col">Restaurant</th>
+  <th scope="col">Invited   </th>
+  <th scope="col">Joined    </th>
+  <th scope="col">Status  </th>
+  <th scope="col">Actions </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <% current_user.orders.each do |order| %>
+        <td>
+        <%= order.order_for %>
+        </td>
+        <td>
+        <%= link_to order.restaurant.name, order %>
+        </td>
+        <td> <% order.friends %> </td>
+        <td></td>
+        <td>
+        <%= order.status %>
+        </td>
+        <td>
+        <%= link_to "View", order %>
+        <%= link_to "Finish", order %> 
+        <%= link_to "Cancel", order,
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></td>
+        </td>
+      <% end %>
+  </tr>
+  
+  </tbody>
+</table>
+
+<%= link_to "New Order", new_order_path, class: "btn btn-success"%>
+

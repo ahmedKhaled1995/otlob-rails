@@ -3,6 +3,12 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      <%= link_to "Home", authenticated_root_path, class: "nav-item nav-link"  %>
+      <%= link_to "Friends", friends_path, class: "nav-item nav-link"  %>
+      <%= link_to "Groups", groups_path, class: "nav-item nav-link"  %>
+      <%= link_to "Orders", orders_path, class: "nav-item nav-link"  %>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
