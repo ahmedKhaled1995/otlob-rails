@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   <tr>
-      <% @orders.each do |order| %>
+      <% current_user.orders.each do |order| %>
         <td>
         <%= order.order_for %>
         </td>

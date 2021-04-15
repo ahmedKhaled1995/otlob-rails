@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    before_action :set_order, only: [:show, :edit, :update, :destroy]
+    before_action :set_order, only: [:show, :destroy]
    
     def index
       @orders = Order.all
@@ -25,6 +25,13 @@ class OrdersController < ApplicationController
     def edit
     end
     
+    def destroy
+      @order = Order.find(params[:id])
+      @order.destroy
+  
+      redirect_to root_path
+    end
+
     private
       def order_params
         params.require(:order).permit(:order_for)
