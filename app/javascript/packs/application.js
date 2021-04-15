@@ -10,10 +10,14 @@ import "channels"
 
 import 'bootstrap/js/src/alert'      // For closing flash messages
 import 'bootstrap/js/src/collapse'   // For making the navbar icon collapsable on small screens
+import 'bootstrap/js/src/dropdown'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+console.log("Always running script!");
+
 
 
 // inside app/frontend/js/bootstrap_js_files.js  
