@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_202127) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "receiver_id", null: false
-    t.string "type"
+    t.integer "category", default: 0
     t.integer "order_id", null: false
     t.integer "sender_id", null: false
     t.boolean "viewed"

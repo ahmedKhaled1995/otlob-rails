@@ -3,5 +3,5 @@ class Notification < ApplicationRecord
   belongs_to :order
   belongs_to :sender, :class_name => "User"
 
-  enum type: [:invitation, :accepted]
+  enum category: [:invite, :accepte]
 end
