@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_193709) do
+ActiveRecord::Schema.define(version: 2021_04_16_202127) do
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -54,16 +54,16 @@ ActiveRecord::Schema.define(version: 2021_04_16_193709) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "recipient_id", null: false
     t.string "type"
     t.integer "order_id", null: false
-    t.integer "friend_id", null: false
+    t.integer "sender_id", null: false
     t.boolean "viewed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["friend_id"], name: "index_notifications_on_friend_id"
     t.index ["order_id"], name: "index_notifications_on_order_id"
-    t.index ["user_id"], name: "index_notifications_on_user_id"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
+    t.index ["sender_id"], name: "index_notifications_on_sender_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -106,9 +106,9 @@ ActiveRecord::Schema.define(version: 2021_04_16_193709) do
   add_foreign_key "groups", "orders"
   add_foreign_key "groups", "users"
   add_foreign_key "items", "orders"
-  add_foreign_key "notifications", "friends"
   add_foreign_key "notifications", "orders"
-  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "recipients"
+  add_foreign_key "notifications", "senders"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end
