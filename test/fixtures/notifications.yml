@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  type: 
+  order: one
+  friend: one
+  viewed: false
+
+two:
+  user: two
+  type: 
+  order: two
+  friend: two
+  viewed: false
