@@ -22,8 +22,6 @@ class GroupsController < ApplicationController
 
         @group.user_id = current_user.id
 
-        puts @group.inspect
-
         if @group.save
             redirect_to action: "show", id: @group.id
         else

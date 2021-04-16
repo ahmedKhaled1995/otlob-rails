@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :users do
-    resources :notification_beta
-  end
+  resources :users
 
   resources :friends
 
