@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_04_16_131842) do
+=======
+ActiveRecord::Schema.define(version: 2021_04_16_202127) do
+>>>>>>> 9e6b5cb71b53ebb15cd4810bb74141e4390c3892
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_131842) do
     t.index ["order_id"], name: "index_items_on_order_id"
   end
 
+<<<<<<< HEAD
   create_table "order_friends", force: :cascade do |t|
     t.integer "group_id", null: false
     t.integer "friend_id", null: false
@@ -60,6 +65,19 @@ ActiveRecord::Schema.define(version: 2021_04_16_131842) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["friend_id"], name: "index_order_friends_on_friend_id"
     t.index ["group_id"], name: "index_order_friends_on_group_id"
+=======
+  create_table "notifications", force: :cascade do |t|
+    t.integer "receiver_id", null: false
+    t.integer "category", default: 0
+    t.integer "order_id", null: false
+    t.integer "sender_id", null: false
+    t.boolean "viewed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_notifications_on_order_id"
+    t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
+    t.index ["sender_id"], name: "index_notifications_on_sender_id"
+>>>>>>> 9e6b5cb71b53ebb15cd4810bb74141e4390c3892
   end
 
   create_table "orders", force: :cascade do |t|
@@ -102,8 +120,12 @@ ActiveRecord::Schema.define(version: 2021_04_16_131842) do
   add_foreign_key "groups", "orders"
   add_foreign_key "groups", "users"
   add_foreign_key "items", "orders"
+<<<<<<< HEAD
   add_foreign_key "order_friends", "friends"
   add_foreign_key "order_friends", "groups"
+=======
+  add_foreign_key "notifications", "orders"
+>>>>>>> 9e6b5cb71b53ebb15cd4810bb74141e4390c3892
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end
