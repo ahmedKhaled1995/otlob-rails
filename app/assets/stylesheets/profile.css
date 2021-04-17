@@ -1,0 +1,72 @@
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+  
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap');
+
+body {
+    text-align: center;
+    /* background: linear-gradient(87deg, rgba(255,216,155,1) 0%, rgba(25,84,123,1) 100%); */
+}
+.username{
+    font-family: 'Fjalla One', sans-serif;
+  letter-spacing: 1px;
+  font-weight: normal;
+  margin-top:40px;
+
+}
+.usermail{
+    margin-top:20px;
+    margin-bottom:40px;
+    font-family: 'Fjalla One', sans-serif;
+  letter-spacing: 0px;
+  font-weight: normal;
+}
+
+.userpage {
+  text-align: center;
+  /* background: url('https://i.postimg.cc/1XhtbKjV/cover.jpg') no-repeat top center; */
+  background-size: cover;
+  overflow: hidden;
+  padding-top: 60px;
+}
+
+.profile-image {
+  margin-top: 15 px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid white;
+  transition: all .5s;
+} .profile-image:hover {
+  transform: scale(1.2) rotate(360deg);
+  border: 7px solid rgb(153, 142, 148);
+}
+.tag {
+  /* background-color: #251414; */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: table;
+  margin: 10px auto;
+} 
+
+
+
+ 
+.content {
+    max-width: 450px;
+    margin: auto;
+    margin-top: auto;
+}
+
+.content .social-description {
+    display: inline-block;
+    max-width: 150px;
+    width: 145px;
+    text-align: center;
+    
+}
