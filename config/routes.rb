@@ -22,13 +22,11 @@ Rails.application.routes.draw do
     resources :items
     resources :order_friends
     collection do
-      get 'test'
+      get 'addFriendtoOrder'
     end
   end
 
 
-  # post 'order/download' => 'order#download', as: :download
-  # post 'order/show_options' => 'orders#show_options', as: :show_options
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

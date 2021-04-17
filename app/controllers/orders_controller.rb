@@ -38,11 +38,21 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
 
-    def test
-      some_parameter = params[:some_parameter]
+    def addFriendtoOrder
+     
+
+     # friend_email = params[:friend_email]
+      user_id = params[:user_id]
+
+      # email = friend_params.require(:email)
+      # user = User.find_by(email: email)
+      # if !user
+      #     redirect_to friends_path, alert: "The user doesn't exist!"
+      #     return
+      # end
     
-      #@friends=Friend.where(user_id: current_user.id)
-      @friends=Friend.where(user_id: some_parameter)
+      @friends=Friend.where(user_id: user_id)
+      #@friends=User.find_by(id: friend_email)
       @groups = Group.where(user_id: current_user.id)
 
       # @group = Group.find(params[:group_id])
