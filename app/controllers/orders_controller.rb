@@ -41,8 +41,8 @@ class OrdersController < ApplicationController
     def change_status_to_completed
       @order = Order.find(params[:id])
       @order.update(status: params[:status] )
-      
-      redirect_to @order
+      redirect_to '/orders'
+      # redirect_to @order
     end
     
     def change_status_to_canceled
