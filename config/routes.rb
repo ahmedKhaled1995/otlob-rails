@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :users do
-    resources :notification_beta
-  end
+  resources :users
 
   resources :friends
 
@@ -22,7 +20,13 @@ Rails.application.routes.draw do
   
   resources :orders do
     resources :items
+    resources :order_friends
+    collection do
+      get 'addFriendtoOrder'
+    end
   end
+
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

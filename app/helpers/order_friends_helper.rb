@@ -1,0 +1,2 @@
+module OrderFriendsHelper
+end

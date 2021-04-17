@@ -1,1 +1,29 @@
-<h2>Welcome <%= current_user.email %>, <%= current_user.full_name %></h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+           <fieldset class="border p-2">
+                <legend class="w-auto">Latest Order</legend>
+                <% if @latestOrders %>
+                <% @latestOrders.each do |order| %>
+                <div>
+                    <a class="col-md-12"> <%= order.order_for %> on <%= order.created_at %> </a>
+                </div>
+                <% end %>
+                <% else %>
+                <a class="col-md-12"> No orders yet</a>
+            <% end %>
+                
+            </fieldset>
+        </div>
+        <div class="col-md-6">
+            <fieldset class="border p-2">
+                <legend class="w-auto">Friends Activity</legend>
+                
+                <div>
+                   
+                </div>
+            
+            </fieldset>
+        </div>
+    </div>
+</div>

@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
         if @group.save
             redirect_to action: "show", id: @group.id
         else
-            render :new
+            redirect_to groups_path, alert: "Can't create group!"
         end
     end
 
