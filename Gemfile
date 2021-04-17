@@ -77,5 +77,10 @@ gem "omniauth-rails_csrf_protection"
 # Used for providing /admin route (like django admin)
 gem 'rails_admin', '~> 2.0'
 
+#gem for searching 
+# gem 'ransack'
+
+#for ajax responese
+gem 'responders' 
 # Used for action cables
 gem 'redis', '~> 3.3', '>= 3.3.1'
