@@ -1,13 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <fieldset class="border p-2">
+           <fieldset class="border p-2">
                 <legend class="w-auto">Latest Order</legend>
-                <% for order in @latesOrders %>
+                <% if @latestOrders %>
+                <% @latestOrders.each do |order| %>
                 <div>
                     <a class="col-md-12"> <%= order.order_for %> on <%= order.created_at %> </a>
                 </div>
                 <% end %>
+                <% else %>
+                <a class="col-md-12"> No orders yet</a>
+            <% end %>
                 
             </fieldset>
         </div>

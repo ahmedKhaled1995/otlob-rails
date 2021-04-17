@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @latesOrders = Order.where(:user_id => current_user.id).last(4)
-    return @activities, @latesOrders
+    @latestOrders = Order.where(:user_id => current_user.id).last(4)
+    return @latestOrders
   end
   def order_details
     render :layout => "application"
