@@ -44,12 +44,6 @@ class OrdersController < ApplicationController
      # friend_email = params[:friend_email]
       user_id = params[:user_id]
 
-      # email = friend_params.require(:email)
-      # user = User.find_by(email: email)
-      # if !user
-      #     redirect_to friends_path, alert: "The user doesn't exist!"
-      #     return
-      # end
     
       @friends=Friend.where(user_id: user_id)
       #@friends=User.find_by(id: friend_email)
