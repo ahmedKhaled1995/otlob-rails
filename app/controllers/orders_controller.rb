@@ -3,6 +3,12 @@ class OrdersController < ApplicationController
    
     def index
       @orders = Order.all
+      # @friends = Friend.where(user_id: current_user.id)
+      # @friends.each do |friend|
+      #   user = User.find_by(email: friend.email)
+      # end
+      # @q = Friend.ransack(params[:q])
+      # @people = @q.result(distinct: true)
     end
   
     def show
@@ -14,7 +20,7 @@ class OrdersController < ApplicationController
   
     def create
       @order = Order.new(order_params)
-  
+     
       if @order.save
         redirect_to @order
       else
@@ -32,6 +38,31 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
 
+    def test
+      some_parameter = params[:some_parameter]
+    
+      #@friends=Friend.where(user_id: current_user.id)
+      @friends=Friend.where(user_id: some_parameter)
+      @groups = Group.where(user_id: current_user.id)
+
+      # @group = Group.find(params[:group_id])
+      # @friendsingroups = @group.group_friends.find(params[:id])
+
+
+      #@test=some_parameter
+      respond_to do |format|
+        format.html
+        format.json {render json: @friends}
+      end
+    end
+
+    # def show_options
+   
+    # end
+
+
+    
+
     private
       def order_params
         params.require(:order).permit(:order_for)
@@ -40,4 +71,6 @@ class OrdersController < ApplicationController
       def set_order
         @order = Order.find(params[:id])
       end
+
 end
+

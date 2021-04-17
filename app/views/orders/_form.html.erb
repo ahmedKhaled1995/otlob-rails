@@ -1,15 +1,43 @@
+<%= form_with model: @order do |form| %>
 
-<%= form_with model: order do |form| %>
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+        <div>
+        <%= form.label :order_for %><br>
+        <%= form.select :order_for, ['breakfast', 'launch', 'dinner'], selected: 'breakfast' %>
+        </div>
+        <div >
+            <%= form.label :from %><br>
+            <%= form.text_field :from %>
+        </div>
+
+      
+          <form class="d-flex ">
+            <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" id="search" >
+            <button class="btn btn-outline-success" id="my_form">Search</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+                <h1>Friends</h1>
+                <table class="table table-striped">
+                  <thead class="thead-dark">
+                  <tr>
+                  <th scope="col">ID   </th>
+                  <th scope="col">Name   </th>
+                  <th scope="col">Email   </th>
+                  </tr>
+                  </thead>
+                  <tbody id="orderfriends">
+                 
+                      
+                </tbody>
+                </table>
+        </div>
+
+      <div >
+          <%= form.submit %>
+      </div>
   <div>
-  <%= form.label :order_for %><br>
-  <%= form.select :order_for, ['breakfast', 'launch', 'dinner'], selected: 'breakfast' %>
-  </div>
-  <div >
-      <%= form.label :from %><br>
-      <%= form.text_field :from %>
-  </div>
-  <div >
-      <%= form.submit %>
-    </div>
-<% end %>
   
+<% end %>
