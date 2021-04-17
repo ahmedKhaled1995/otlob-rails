@@ -38,6 +38,20 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
 
+    def change_status_to_completed
+      @order = Order.find(params[:id])
+      @order.update(status: params[:status] )
+      
+      redirect_to @order
+    end
+    
+    def change_status_to_canceled
+      @order = Order.find(params[:id])
+      @order.update(status: params[:status])
+      
+      redirect_to @order
+    end
+
     def addFriendtoOrder
      
 
