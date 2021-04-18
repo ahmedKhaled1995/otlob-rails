@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   
   resources :orders do
     resources :items
+    member do
+      patch :change_status_to_completed
+      patch  :change_status_to_canceled
+    end
     resources :order_friends
     collection do
       get 'addFriendtoOrder'

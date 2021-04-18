@@ -11,10 +11,30 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-      <% @orders.each do |order| %>
+  <% @orders.each do |order| %>
+    <tr>
+    <%  if current_user.id == order.user_id %>
+          <td>
+            <%= order.order_for %>
+          </td>
+          <td>
+            <%= link_to order.restaurant.name, order %>
+          </td>
+          <td> <% order.friends %> </td>
+          <td></td>
+          <td>
+            <%= order.status %>
+          </td>
+          <td>
+          <%= link_to "View", order %>
+          <% if order.status == "waiting" %>
+          <%= link_to "Finish", change_status_to_completed_order_path(order, status: :complete), method: :patch %> 
+          <%= link_to "Cancel", change_status_to_canceled_order_path(order, status: :canceled), method: :patch %>
+          <% end %>
+          </td>
+    <% else %>
         <% order.friends.each do |friend| %>
-          <% if User.find_by(email: friend.email).id == current_user.id || current_user.id == order.user_id %>
+          <% if User.find_by(email: friend.email).id == current_user.id %>
           <td>
           <%= order.order_for %>
           </td>
@@ -28,18 +48,19 @@
           </td>
           <td>
           <%= link_to "View", order %>
-          <%= link_to "Finish", order %> 
-          <%= link_to "Cancel", order,
-                      method: :delete,
-                      data: { confirm: "Are you sure?" } %></td>
+          <% if current_user.id == order.user_id %>
+          <% if order.status == "waiting" %>
+          <%= link_to "Finish", change_status_to_completed_order_path(order, status: :complete), method: :patch %> 
+          <%= link_to "Cancel", change_status_to_canceled_order_path(order, status: :canceled), method: :patch %>
+          <% end %>
+          <% end %>
           </td>
+          </tr>
           <% end %>
         <% end %>
       <% end %>
-  </tr>
-  
+  <% end %>
   </tbody>
 </table>
 
 <%= link_to "New Order", new_order_path, class: "btn btn-success"%>
-

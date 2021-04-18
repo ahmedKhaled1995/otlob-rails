@@ -38,6 +38,25 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
 
+<<<<<<< HEAD
+=======
+    def change_status_to_completed
+      @order = Order.find(params[:id])
+      @order.update(status: params[:status] )
+      redirect_to '/orders'
+      # redirect_to @order
+    end
+    
+    def change_status_to_canceled
+      @order = Order.find(params[:id])
+      @order.update(status: params[:status])
+      redirect_to '/orders'
+      # redirect_to @order
+    end
+
+    def addFriendtoOrder
+     
+>>>>>>> 069d8fedf5be8b57abfc81b228bfbc57a7922b28
 
 def addGrouptoOrder
   group_name = params[:group_name]
