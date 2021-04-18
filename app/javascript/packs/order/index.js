@@ -36,10 +36,11 @@ $(document).ready(function() {
             friendsids=checkrows();
             //check if current row id already exist
                 if (!checkForMatch(friendsids,result.id)) {
-            content ='<tr id="'+result.id+'"><td>'+result.id+
-            '</td><td>'+result.full_name+'</td><td>'+result.email+'</td><td><button class="btn btn-danger" id="removefriend'+result.id+'">remove</button><td></tr>' ;
-            $('#orderfriends').last().append(content);
+                      content ='<tr id="'+result.id+'"><td>'+result.id+
+                      '</td><td>'+result.full_name+'</td><td>'+result.email+'</td><td><button class="btn btn-danger" id="removefriend'+result.id+'">remove</button><td></tr>' ;
+                      $('#orderfriends').last().append(content);
                 }
+                allIds()
           }
         });
         
@@ -74,17 +75,25 @@ $(document).ready(function() {
                     +result[i].id+'">remove</button><td></tr>' ;
                     $('#orderfriends').last().append(content);
                 }
-
-
-
-           
-                
             }
-            
+            allIds()
             }
           });
           
     });
   });
 
-
+ function allIds(){
+        formData=checkrows();
+        // console.log('thisis',formData)
+            $.ajax({
+              type: 'GET',
+              url: "order_friend_params",
+              dataType: 'json',
+              // data: JSON.stringify(formData),
+              data: {formData: formData},
+              // function(data){
+              //     alert(data)
+              // }
+          })
+}

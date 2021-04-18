@@ -12,20 +12,39 @@ class OrdersController < ApplicationController
     end
   
     def show
+      # friend_email = params[:cbo_id]
+      # p "helo----------------"
+      # # @friend = Friend.find params[:'1']
     end
   
     def new
       @order = Order.new
     end
-  
+# // get all the ids from table
+    def order_friend_params
+      # //flash pass vairble to next method
+      @listofIds =params[:formData]
+      session[:passed_variable] = @listofIds
+      # //params.require(:order).permit(:order_for)
+    end
+
     def create
-      @order = Order.new(order_params)
-     
-      if @order.save
-        redirect_to @order
-      else
-        render :new
+      @listofIds = session[:passed_variable] 
+      @get_value = @listofIds
+      @get_value.each do |currentfriendid|
+        @friends=Friend.find_by(id: currentfriendid)
+        p @friends
       end
+
+       p @get_value
+      # @order = Order.new(order_params)
+      # @orderfriend = OrderFriend.new(order_friend_params)
+     
+      # if @order.save
+      #   redirect_to @order
+      # else
+      #   render :new
+      # end
     end
   
     def edit
@@ -87,6 +106,9 @@ end
 
 
    
+
+
+
 
 
 
