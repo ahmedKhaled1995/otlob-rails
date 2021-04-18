@@ -38,34 +38,43 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
 
+
+def addGrouptoOrder
+  group_name = params[:group_name]
+  @group = Group.find_by(user_id: current_user.id,name:group_name)
+ 
+  @friendsingroup = {friends: []}
+  @results = @group.group_friends.each do |group_friend|
+    @friendsingroup[:friends] <<  group_friend.friend 
+  end
+
+
+  respond_to do |format|
+    format.html
+    format.json { render json: @friendsingroup}
+  end
+end
+
+
     def addFriendtoOrder
      
+      friend_email = params[:friend_email]
+   
+      @friends=User.find_by(email: friend_email)
 
-     # friend_email = params[:friend_email]
-      user_id = params[:user_id]
-
-    
-      @friends=Friend.where(user_id: user_id)
-      #@friends=User.find_by(id: friend_email)
-      @groups = Group.where(user_id: current_user.id)
-
-      # @group = Group.find(params[:group_id])
-      # @friendsingroups = @group.group_friends.find(params[:id])
-
-
-      #@test=some_parameter
       respond_to do |format|
         format.html
         format.json {render json: @friends}
+
+
       end
     end
 
-    # def show_options
+
    
-    # end
 
 
-    
+
 
     private
       def order_params
