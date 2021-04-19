@@ -8,6 +8,13 @@ function checkrows(){
         
   });
   uniqueItems = [...new Set(currentFriends)]
+
+
+  numberoffriends=(uniqueItems.length)
+  // console.log(uniqueItems)
+  // console.log(numberoffriends)
+  $('#numberoffriends').val(numberoffriends);
+
   return uniqueItems;
 }
 
@@ -35,11 +42,15 @@ $(document).ready(function() {
           data: {friend_email: frinedemail},
           success:function(res){
             friendsids=checkrows();
+
+
+          
+            
             //check if current row id already exist
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
             var imageUrl;
-                if (!checkForMatch(friendsids,res.id)) {
+                if (!checkForMatch(friendsids,res[0])) {
                 //mfrod hna y7sl error :) res[0] id just an id
                   if(res[0].get_image == null)
                   {
@@ -59,6 +70,7 @@ $(document).ready(function() {
                   res[0]+'" style="margin-left: 70%;">remove</button></td></tr>' ;
                   $('#orderfriends').last().append(content);
                 }
+
                 allIds()
           }
         });
@@ -87,6 +99,8 @@ $(document).ready(function() {
             //  console.log(res[0].friendsid[i])
                 friendsids=checkrows();
 
+            
+
 
               //check if current row id already exist
                   if (!checkForMatch(friendsids,res[0].friendsid[i])) {
@@ -109,6 +123,9 @@ $(document).ready(function() {
                     +result[i].email+'</td><td class="card-footer"><button style="margin-left:70%"class="btn btn-danger" id="removefriend'
                     +res[0].friendsid[i]+'">remove</button></td></tr>' ;
                     $('#orderfriends').last().append(content);
+
+
+
                 }
             }
             allIds()
