@@ -21,22 +21,13 @@
             <%= link_to order.restaurant.name, order %>
           </td>
           <td> 
-<<<<<<< HEAD
               <% @order_friend=OrderFriend.where(order_id:order.id) %>
               <%= @order_friend.count %>
             
           </td>
-          <td> 
-              <% order.friends %>
-=======
-              <% @order_fri=OrderFriend.where(order_id:order.id) %>
-              <% @order_fri.each do |orderfriend| %>
-                  <li>   <%=link_to orderfriend.friend.email, user_url(orderfriend.friend.id)  %></li>
-              <% end %>
-        </td>
+
           <td>
                <% order.friends %>
->>>>>>> 5933a939ee585b776328d5ded59f5139f3e64819
           <td>
                <%= order.status %>
           </td>
