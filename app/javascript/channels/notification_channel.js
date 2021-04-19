@@ -2,6 +2,12 @@ import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', ()=>{
 
+  const notificationsElement = document.querySelector("#notifications");
+  const bellIcon = document.querySelector("#bell");
+  const neNewNotificationElement = document.querySelector("#no-new-notification");
+
+  // console.log(notificationsElement.innerHTML);
+
   // Getting id of user to establish a connection
   const idDivElement = document.querySelector("#user-id");
   if (idDivElement){
@@ -13,6 +19,8 @@ document.addEventListener('turbolinks:load', ()=>{
       const identifierObj = JSON.parse(subscriptionsObject.identifier);
       return identifierObj.channel = "NotificationChannel"
     });
+
+    // Establishing a connection channedl if a connection hasn't already been established
     if(!notificationsubscription){
       consumer.subscriptions.create({ channel: "NotificationChannel", user_id: user_id }, {
         connected() {
@@ -24,11 +32,25 @@ document.addEventListener('turbolinks:load', ()=>{
           // Called when the subscription has been terminated by the server
         },
       
-        received(data) {
+        received(data) {   // Data is the notification recived
           // Called when there's incoming data on the websocket for this channel
-          console.log("---------------------");
           console.log(data);
-          console.log("---------------------");
+          bellIcon.style.color = "crimson";
+          if(neNewNotificationElement){
+            neNewNotificationElement.style.display = "none"; 
+          }
+          let newNotification = "";
+          let oldNotifications = notificationsElement.innerHTML;
+          if(data.category === 0){  // Invitaion
+            newNotification = `<a class="dropdown-item" href="#"> ${data.sender.full_name}
+                                  Has Invited You to His Order</a>`
+            newNotification += `<div class="dropdown-divider"></div>`;
+          }else{  // Accept
+            newNotification = `<a class="dropdown-item" href="#"> ${data.sender.full_name}
+                                Joined Your ${data.order.order_for}</a>`
+            newNotification += `<div class="dropdown-divider"></div>`;
+          }
+          notificationsElement.innerHTML = newNotification + oldNotifications;
         }
       });
     }

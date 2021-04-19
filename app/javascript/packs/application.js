@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import "@fortawesome/fontawesome-free/css/all"
 import 'bootstrap/js/src/alert'      // For closing flash messages
 import 'bootstrap/js/src/collapse'   // For making the navbar icon collapsable on small screens
 import 'bootstrap/js/src/dropdown'

@@ -90,10 +90,7 @@ $(document).ready(function() {
               type: 'GET',
               url: "order_friend_params",
               dataType: 'json',
-              // data: JSON.stringify(formData),
               data: {formData: formData},
-              // function(data){
-              //     alert(data)
-              // }
+        
           })
 }
