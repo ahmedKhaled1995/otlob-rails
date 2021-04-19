@@ -21,14 +21,24 @@
             <%= link_to order.restaurant.name, order %>
           </td>
           <td> 
+<<<<<<< HEAD
               <% @order_friend=OrderFriend.where(order_id:order.id) %>
               <%= @order_friend.count %>
             
           </td>
           <td> 
               <% order.friends %>
+=======
+              <% @order_fri=OrderFriend.where(order_id:order.id) %>
+              <% @order_fri.each do |orderfriend| %>
+                  <li>   <%=link_to orderfriend.friend.email, user_url(orderfriend.friend.id)  %></li>
+              <% end %>
+        </td>
           <td>
-            <%= order.status %>
+               <% order.friends %>
+>>>>>>> 5933a939ee585b776328d5ded59f5139f3e64819
+          <td>
+               <%= order.status %>
           </td>
           <td>
           <%= link_to "View", order %>
@@ -38,7 +48,8 @@
           <% end %>
           </td>
     <% else %>
-        <% order.friends.each do |friend| %>
+       <% @friends=OrderFriend.where(order_id:order.id) %>
+        <% @friends.each do |friend| %>
           <% if User.find_by(email: friend.email).id == current_user.id %>
           <td>
           <%= order.order_for %>
@@ -53,12 +64,6 @@
           </td>
           <td>
           <%= link_to "View", order %>
-          <% if current_user.id == order.user_id %>
-          <% if order.status == "waiting" %>
-          <%= link_to "Finish", change_status_to_completed_order_path(order, status: :complete), method: :patch %> 
-          <%= link_to "Cancel", change_status_to_canceled_order_path(order, status: :canceled), method: :patch %>
-          <% end %>
-          <% end %>
           </td>
           </tr>
           <% end %>
