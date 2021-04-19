@@ -23,7 +23,7 @@
           <td> 
               <% @order_fri=OrderFriend.where(order_id:order.id) %>
               <% @order_fri.each do |orderfriend| %>
-              <%= orderfriend.friend.email %><br>
+                  <li>   <%=link_to orderfriend.friend.email, user_url(orderfriend.friend.id)  %></li>
               <% end %>
             
         </td>
