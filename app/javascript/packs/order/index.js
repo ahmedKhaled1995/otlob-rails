@@ -1,5 +1,4 @@
 
-
 //appned all rows id to array(n.b row is unique by friend id)
 currentFriends=[]
 //var uniqueItems=[] ;
@@ -39,20 +38,26 @@ $(document).ready(function() {
             //check if current row id already exist
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
-                if (!checkForMatch(friendsids,res[0].id)) {
+            var imageUrl;
+                if (!checkForMatch(friendsids,res.id)) {
+                //mfrod hna y7sl error :) res[0] id just an id
                   if(res[0].get_image == null)
                   {
-                    console.log("mfish" ,res[0].get_image)
+                     imageUrl= `https://gravatar.com/avatar/${CryptoJS.MD5(result.email).toString()}?s=32&d=identicon&r=PG`
+                    //  console.log(imageUrl,)
+
                   }
                   else{
-                    console.log("fe" ,res[0].get_image)
+                    imageUrl=res.get_image
+                    // console.log(res.get_image)
                   }
                   
-                      content ='<tr class="card" id="'+res[0].id+'" style="margin-bottom: 20px;">'+
-                      '<td class="card-header"><img src="'+res[0].get_image +'" alt="profile_picture" width="50" height="50">'+res[0].id+' : '+result.full_name+'</td><td>'+
-                      result.email+'</td><td class="card-footer"><button class="btn btn-danger" id="removefriend'+
-                      res[0].id+'" style="margin-left: 70%;">remove</button></td></tr>' ;
-                      $('#orderfriends').last().append(content);
+                  content ='<tr class="card" id="'+res[0]+'" style="margin-bottom: 20px;">'+
+                  '<td class="card-header"><img src="'+imageUrl+'" alt="profile_picture" width="50" height="50">'
+                  +res[0]+' : '+result.full_name+'</td><td>'+
+                  result.email+'</td><td class="card-footer"><button class="btn btn-danger" id="removefriend'+
+                  res[0]+'" style="margin-left: 70%;">remove</button></td></tr>' ;
+                  $('#orderfriends').last().append(content);
                 }
                 allIds()
           }
@@ -81,10 +86,26 @@ $(document).ready(function() {
             for(i=0;i<result.length;i++){
             //  console.log(res[0].friendsid[i])
                 friendsids=checkrows();
+
+
               //check if current row id already exist
                   if (!checkForMatch(friendsids,res[0].friendsid[i])) {
+
+                    if(res[0].friendsid[i].get_image == null)
+                    {
+                       imageUrl= `https://gravatar.com/avatar/${CryptoJS.MD5(result[i].email).toString()}?s=32&d=identicon&r=PG`
+                      //  console.log(imageUrl,)
+  
+                    }
+                    else{
+                      imageUrl=res.get_image
+                      // console.log(res.get_image)
+                    }
+
+
+
                     content ='<tr class="card" id="'+res[0].friendsid[i]+'" style="margin-bottom:20px">'+
-                    '<td class="card-header">'+res[0].friendsid[i]+' : '+result[i].full_name+'</td><td class="card-body">'
+                    '<td class="card-header">'+'<img src="'+imageUrl+'" alt="profile_picture" width="50" height="50">'+res[0].friendsid[i]+' : '+result[i].full_name+'</td><td class="card-body">'
                     +result[i].email+'</td><td class="card-footer"><button style="margin-left:70%"class="btn btn-danger" id="removefriend'
                     +res[0].friendsid[i]+'">remove</button></td></tr>' ;
                     $('#orderfriends').last().append(content);
