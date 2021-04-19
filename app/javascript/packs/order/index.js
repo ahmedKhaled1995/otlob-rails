@@ -40,8 +40,10 @@ $(document).ready(function() {
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
                 if (!checkForMatch(friendsids,res[0])) {
-                      content ='<tr id="'+res[0]+'"><td>'+res[0]+
-                      '</td><td>'+result.full_name+'</td><td>'+result.email+'</td><td><button class="btn btn-danger" id="removefriend'+res[0]+'">remove</button><td></tr>' ;
+                      content ='<tr class="card" id="'+res[0]+'"><>'+res[0]+
+                      '</td><td class="card-header">'+result.full_name+'</td><td>'+
+                      result.email+'</td><td><button class="btn btn-danger" id="removefriend'+
+                      res[0]+'">remove</button><td></tr>' ;
                       $('#orderfriends').last().append(content);
                 }
                 allIds()
