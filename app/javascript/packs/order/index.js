@@ -39,11 +39,19 @@ $(document).ready(function() {
             //check if current row id already exist
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
-                if (!checkForMatch(friendsids,res[0])) {
-                      content ='<tr class="card" id="'+res[0]+'" style="margin-bottom: 20px;">'+
-                      '<td class="card-header">'+res[0]+' : '+result.full_name+'</td><td>'+
+                if (!checkForMatch(friendsids,res[0].id)) {
+                  if(res[0].get_image == null)
+                  {
+                    console.log("mfish" ,res[0].get_image)
+                  }
+                  else{
+                    console.log("fe" ,res[0].get_image)
+                  }
+                  
+                      content ='<tr class="card" id="'+res[0].id+'" style="margin-bottom: 20px;">'+
+                      '<td class="card-header"><img src="'+res[0].get_image +'" alt="profile_picture" width="50" height="50">'+res[0].id+' : '+result.full_name+'</td><td>'+
                       result.email+'</td><td class="card-footer"><button class="btn btn-danger" id="removefriend'+
-                      res[0]+'" style="margin-left: 70%;">remove</button></td></tr>' ;
+                      res[0].id+'" style="margin-left: 70%;">remove</button></td></tr>' ;
                       $('#orderfriends').last().append(content);
                 }
                 allIds()

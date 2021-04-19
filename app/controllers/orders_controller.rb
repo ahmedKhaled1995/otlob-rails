@@ -141,7 +141,7 @@ end
       friend_email = params[:friend_email]
    
       @friends=Friend.find_by(email: friend_email)
-      @friendid=Friend.find_by(email: friend_email).id
+      @friendid=Friend.find_by(email: friend_email)
 # // not use user directly in case he writes email not of his friends       
       @user=User.find_by(email: @friends.email)
 
