@@ -2,9 +2,7 @@ import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', ()=>{
 
-  const notificationsElement = document.querySelector("#notifications");
-  const bellIcon = document.querySelector("#bell");
-  const neNewNotificationElement = document.querySelector("#no-new-notification");
+  
 
   // console.log(notificationsElement.innerHTML);
 
@@ -35,6 +33,9 @@ document.addEventListener('turbolinks:load', ()=>{
         received(data) {   // Data is the notification recived
           // Called when there's incoming data on the websocket for this channel
           console.log(data);
+          const notificationsElement = document.querySelector("#notifications");
+          const bellIcon = document.querySelector("#bell");
+          const neNewNotificationElement = document.querySelector("#no-new-notification");
           bellIcon.style.color = "crimson";
           if(neNewNotificationElement){
             neNewNotificationElement.style.display = "none"; 
@@ -42,11 +43,11 @@ document.addEventListener('turbolinks:load', ()=>{
           let newNotification = "";
           let oldNotifications = notificationsElement.innerHTML;
           if(data.category === 0){  // Invitaion
-            newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.id}"> ${data.sender.full_name}
+            newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.notification_id}"> ${data.sender.full_name}
                                   Has Invited You to His Order</a>`
             newNotification += `<div class="dropdown-divider"></div>`;
           }else{  // Accept
-            newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.id}"> ${data.sender.full_name}
+            newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.notification_id}"> ${data.sender.full_name}
                                 Joined Your ${data.order.order_for}</a>`
             newNotification += `<div class="dropdown-divider"></div>`;
           }

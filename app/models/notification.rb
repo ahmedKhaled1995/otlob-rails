@@ -15,6 +15,7 @@ class Notification < ApplicationRecord
     new_notification.viewed = false
     new_notification.save()
     data = {
+      :notification_id => new_notification.id,
       :receiver => new_notification.receiver,
       :category => category,
       :order => new_notification.order,
