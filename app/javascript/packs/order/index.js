@@ -40,10 +40,10 @@ $(document).ready(function() {
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
                 if (!checkForMatch(friendsids,res[0])) {
-                      content ='<tr class="card" id="'+res[0]+'"><>'+res[0]+
-                      '</td><td class="card-header">'+result.full_name+'</td><td>'+
-                      result.email+'</td><td><button class="btn btn-danger" id="removefriend'+
-                      res[0]+'">remove</button><td></tr>' ;
+                      content ='<tr class="card" id="'+res[0]+'" style="margin-bottom: 20px;">'+
+                      '<td class="card-header">'+res[0]+' : '+result.full_name+'</td><td>'+
+                      result.email+'</td><td class="card-footer"><button class="btn btn-danger" id="removefriend'+
+                      res[0]+'" style="margin-left: 70%;">remove</button></td></tr>' ;
                       $('#orderfriends').last().append(content);
                 }
                 allIds()
@@ -75,10 +75,10 @@ $(document).ready(function() {
                 friendsids=checkrows();
               //check if current row id already exist
                   if (!checkForMatch(friendsids,res[0].friendsid[i])) {
-                    content ='<tr id="'+res[0].friendsid[i]+'"><td>'+res[0].friendsid[i]+
-                    '</td><td>'+result[i].full_name+'</td><td>'
-                    +result[i].email+'</td><td><button class="btn btn-danger" id="removefriend'
-                    +res[0].friendsid[i]+'">remove</button><td></tr>' ;
+                    content ='<tr class="card" id="'+res[0].friendsid[i]+'" style="margin-bottom:20px">'+
+                    '<td class="card-header">'+res[0].friendsid[i]+' : '+result[i].full_name+'</td><td class="card-body">'
+                    +result[i].email+'</td><td class="card-footer"><button style="margin-left:70%"class="btn btn-danger" id="removefriend'
+                    +res[0].friendsid[i]+'">remove</button></td></tr>' ;
                     $('#orderfriends').last().append(content);
                 }
             }
