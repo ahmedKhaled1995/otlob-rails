@@ -89,9 +89,26 @@ body {
   padding-right: 8px;
 }
 
+.btnorder{
+  margin: auto;
+  background-color: #312141;
+  color: white;
+  margin-top: 25px;
+}
+.btnorder:hover{
+  margin: auto;
+  background-color: #312141;
+  color: white;
+}
 
 .tbhead{
-background-color: rgb(134, 130, 130);
+background-color:rgb(218 209 228 / 35%);
+color: #312141;
 
 }
+.tbraw{
+  color: #312141;
+  font-size: medium;
+}
+
 .tbraw:hover {background-color:#e2e0e0;}
