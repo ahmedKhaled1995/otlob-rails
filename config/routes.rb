@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :friends
 
+  resources :notifications
+
   resources :groups do
     resources :group_friends
   end

@@ -42,11 +42,11 @@ document.addEventListener('turbolinks:load', ()=>{
           let newNotification = "";
           let oldNotifications = notificationsElement.innerHTML;
           if(data.category === 0){  // Invitaion
-            newNotification = `<a class="dropdown-item" href="#"> ${data.sender.full_name}
+            newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.id}"> ${data.sender.full_name}
                                   Has Invited You to His Order</a>`
             newNotification += `<div class="dropdown-divider"></div>`;
           }else{  // Accept
-            newNotification = `<a class="dropdown-item" href="#"> ${data.sender.full_name}
+            newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.id}"> ${data.sender.full_name}
                                 Joined Your ${data.order.order_for}</a>`
             newNotification += `<div class="dropdown-divider"></div>`;
           }
