@@ -12,39 +12,62 @@ class OrdersController < ApplicationController
     end
   
     def show
-      # friend_email = params[:cbo_id]
-      # p "helo----------------"
-      # # @friend = Friend.find params[:'1']
+
     end
   
     def new
       @order = Order.new
     end
+
 # // get all the ids from table
     def order_friend_params
-      # //flash pass vairble to next method
+
       @listofIds =params[:formData]
       session[:passed_variable] = @listofIds
-      # //params.require(:order).permit(:order_for)
     end
 
+# // i save friend id in friend_order not user id
     def create
+    #  // list of ids of all friends added to the order
       @listofIds = session[:passed_variable] 
       @get_value = @listofIds
-      @get_value.each do |currentfriendid|
-        @friends=Friend.find_by(id: currentfriendid)
-        p @friends
-      end
 
-       p @get_value
-      # @order = Order.new(order_params)
-      # @orderfriend = OrderFriend.new(order_friend_params)
-     
-      # if @order.save
-      #   redirect_to @order
-      # else
-      #   render :new
-      # end
+# 1st restaurant -> 2nd order -> 3rd order_friends
+
+      @restaurant = Restaurant.new(restaurant_params)
+      if @restaurant.save
+            @order = Order.new(order_params)
+            @order.restaurant_id= @restaurant.id
+            @order.user_id= current_user.id
+
+            if @order.save
+              @get_value.each do |currentfriendid|
+                #@friends=Friend.find_by(id: currentfriendid)
+                @order_friend=OrderFriend.new
+                @order_friend.friend_id=currentfriendid
+                @order_friend.order_id= @order.id
+                  
+                    if  @order_friend.save
+                        p "friend is added to order---------------------"
+                    else
+                        p "friend is not added to order-------------------"
+                        render :new
+                    end
+               end
+              p "order is added----------------------"
+              redirect_to @order
+              # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
+            else
+              p "order is not added-------------------"
+              render :new
+            end
+
+        p "restaurant is added----------------------"
+      else
+        p "restaurant is not added-------------------"
+         render :new
+      end
+      
     end
   
     def edit
@@ -79,7 +102,11 @@ def addGrouptoOrder
  
   @friendsingroup = {friends: []}
   @results = @group.group_friends.each do |group_friend|
-    @friendsingroup[:friends] <<  group_friend.friend 
+    # @friendsingroup[:friends] <<  group_friend.friend 
+    @users=User.find_by(email:group_friend.friend.email)
+    @friendsingroup[:friends] <<  @users
+    
+
   end
 
 
@@ -95,21 +122,16 @@ end
       friend_email = params[:friend_email]
    
       @friends=Friend.find_by(email: friend_email)
+# // not use user directly in case he writes email not of his friends       
+      @users=User.find_by(email: @friends.email)
 
       respond_to do |format|
         format.html
-        format.json {render json: @friends}
+        format.json {render json: @users}
 
 
       end
     end
-
-
-   
-
-
-
-
 
 
 
@@ -117,6 +139,12 @@ end
       def order_params
         params.require(:order).permit(:order_for)
       end
+
+      def restaurant_params
+        params.require(:order).permit(:name)
+      end
+      
+
 
       def set_order
         @order = Order.find(params[:id])
