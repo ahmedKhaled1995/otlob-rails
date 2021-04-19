@@ -53,9 +53,6 @@ body {
   display: table;
   margin: 10px auto;
 } 
-
-
-
  
 .content {
     max-width: 450px;
@@ -70,3 +67,31 @@ body {
     text-align: center;
     
 }
+
+.brand-image{
+  width: 80px;
+  height: 50px;
+  border-radius: 5%;
+
+}
+.class1{
+  
+  background-color: rgb(49, 33, 65);
+
+}
+
+.headbar{
+
+  color:white;
+  font-weight: 100px;
+  margin-top: 2%;
+  margin-left: 0%;
+  padding-right: 8px;
+}
+
+
+.tbhead{
+background-color: rgb(134, 130, 130);
+
+}
+.tbraw:hover {background-color:#e2e0e0;}
