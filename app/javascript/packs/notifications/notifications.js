@@ -5,13 +5,15 @@ document.addEventListener('turbolinks:load', ()=>{
 
     const bellIcon = document.querySelector("#bell-link");
 
-    console.log(bellIcon);
+    // console.log(bellIcon);
 
 
-
-    bellIcon.addEventListener("click", (e)=>{
-        console.log("bell clicked");
-    });
+    if(bellIcon){
+        bellIcon.addEventListener("click", (e)=>{
+            console.log("bell clicked");
+        });
+    }
+    
 
 });
 
