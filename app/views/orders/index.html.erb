@@ -25,12 +25,11 @@
               <% @order_fri.each do |orderfriend| %>
                   <li>   <%=link_to orderfriend.friend.email, user_url(orderfriend.friend.id)  %></li>
               <% end %>
-            
         </td>
           <td>
                <% order.friends %>
           <td>
-            <%= order.status %>
+               <%= order.status %>
           </td>
           <td>
           <%= link_to "View", order %>
@@ -40,7 +39,8 @@
           <% end %>
           </td>
     <% else %>
-        <% order.friends.each do |friend| %>
+       <% @friends=OrderFriend.where(order_id:order.id) %>
+        <% @friends.each do |friend| %>
           <% if User.find_by(email: friend.email).id == current_user.id %>
           <td>
           <%= order.order_for %>

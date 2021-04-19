@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_042601) do
+ActiveRecord::Schema.define(version: 2021_04_19_114512) do
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_042601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order_id", null: false
+    t.integer "user"
     t.integer "user_id"
     t.index ["order_id"], name: "index_items_on_order_id"
   end
