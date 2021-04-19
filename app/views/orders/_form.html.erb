@@ -1,30 +1,52 @@
 <%= form_with model: @order do |form| %>
 
-<div class="container">
+<div class="container" >
   <div class="row">
-      <div class="col-md-6">
-        <div>
-        <%= form.label :order_for %><br>
-        <%= form.select :order_for, ['breakfast', 'launch', 'dinner'], selected: 'breakfast' %>
-        </div>
-        <div >
-            <%= form.label :name %><br>
-            <%= form.text_field :name %>
-        </div>
+    <div class="col-md-6 addordercontainer" >
+      <div class="card-header addorderheader">
+        Add Order
+      </div>
+    <div class="card-body" > 
+     
+      <div class="form-divs">
+        <%= form.label :order_for ,class:"form-label" %><br>
+        <%= form.select :order_for, options_for_select(['breakfast', 'launch', 'dinner']), {}, class: "form-control" %>
 
+      </div>
       
-          <form class="d-flex ">
-            <input class="form-control me-2 " type="search" placeholder="Friend Email" aria-label="Search" id="fiendsearch" >
-            <button class="btn btn-outline-success" id="fiendsearch_form">Add friend</button>
-          </form>
+      <div class="form-divs">
+            <%= form.label :restaurant_name ,class:"form-label" %><br>
+            <%= form.text_field :name ,class:"form-control" %>
+      </div>
 
-
-          <form class="d-flex ">
-          <input class="form-control me-2 " type="search" placeholder="Group Name" aria-label="Search" id="groupsearch" >
-          <button class="btn btn-outline-success" id="groupsearch_form">Add Group</button>
-        </form>
+  
+      <div class="form-divs">
+        <label class:"form-label col-md-12">Friends</label>
+        <div class="row">
+          <input class="form-control me-2 col-md-8" type="search" placeholder="Friend Email" aria-label="Search" id="fiendsearch" >
+          <button class="btn btn-outline-purple col-md-3" id="fiendsearch_form">Add friend</button>
         </div>
-        <div class="col-md-6">
+      </div>
+
+
+      <div class="form-divs">
+      <label class:"form-label">Groups</label>
+        <div class="row">
+          <input class="form-control me-2 col-md-8" type="search" placeholder="Group Name" aria-label="Search" id="groupsearch" >
+          <button class="btn btn-outline-purple col-md-3" id="groupsearch_form">Add Group</button>
+        </div>
+      </div>
+      
+      <div>
+         <%= form.submit class:"btn btn-purple"%>
+      </div>
+      </div>
+    </div>
+        <div class="col-md-5" style="border-radius: 20px;
+        border: 1px #dad1e4 solid;
+        margin: 4%;
+        padding: 2% 4%;
+        text-align: left;">
                 <h1>Friends</h1>
                 <table class="table table-striped orderfriendtable">
                   <thead class="thead-dark">
@@ -42,9 +64,7 @@
                 </table>
         </div>
 
-      <div >
-          <%= form.submit class:"btn btn-success"%>
-      </div>
+    
   <div>
   
 <% end %>

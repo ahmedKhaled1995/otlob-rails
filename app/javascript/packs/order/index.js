@@ -1,3 +1,5 @@
+
+
 //appned all rows id to array(n.b row is unique by friend id)
 currentFriends=[]
 //var uniqueItems=[] ;
@@ -32,12 +34,14 @@ $(document).ready(function() {
           dataType:"json",
 
           data: {friend_email: frinedemail},
-          success:function(result){
+          success:function(res){
             friendsids=checkrows();
             //check if current row id already exist
-                if (!checkForMatch(friendsids,result.id)) {
-                      content ='<tr id="'+result.id+'"><td>'+result.id+
-                      '</td><td>'+result.full_name+'</td><td>'+result.email+'</td><td><button class="btn btn-danger" id="removefriend'+result.id+'">remove</button><td></tr>' ;
+            //res[1] -> user object , res[0] -> friend id
+            result=res[1]
+                if (!checkForMatch(friendsids,res[0])) {
+                      content ='<tr id="'+res[0]+'"><td>'+res[0]+
+                      '</td><td>'+result.full_name+'</td><td>'+result.email+'</td><td><button class="btn btn-danger" id="removefriend'+res[0]+'">remove</button><td></tr>' ;
                       $('#orderfriends').last().append(content);
                 }
                 allIds()
@@ -58,21 +62,21 @@ $(document).ready(function() {
             url:"addGrouptoOrder",
             dataType:"json",
            data: {group_name: groupname},
-            success:function(result){
+            success:function(res){
               
              
 
             //  ---------------group-----------------
-             result=result.friends
+             result=res[1].friends
             for(i=0;i<result.length;i++){
-
+            //  console.log(res[0].friendsid[i])
                 friendsids=checkrows();
               //check if current row id already exist
-                  if (!checkForMatch(friendsids,result[i].id)) {
-                    content ='<tr id="'+result[i].id+'"><td>'+result[i].id+
+                  if (!checkForMatch(friendsids,res[0].friendsid[i])) {
+                    content ='<tr id="'+res[0].friendsid[i]+'"><td>'+res[0].friendsid[i]+
                     '</td><td>'+result[i].full_name+'</td><td>'
                     +result[i].email+'</td><td><button class="btn btn-danger" id="removefriend'
-                    +result[i].id+'">remove</button><td></tr>' ;
+                    +res[0].friendsid[i]+'">remove</button><td></tr>' ;
                     $('#orderfriends').last().append(content);
                 }
             }

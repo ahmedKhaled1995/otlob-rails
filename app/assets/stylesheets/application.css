@@ -17,3 +17,49 @@
 
 /* Notification drop down */
 
+
+.form-divs{
+    
+  margin-bottom: 4%;
+}
+#fiendsearch,#groupsearch{
+    margin: 0px 16px;
+}
+
+  /* custom button design */
+.btn-outline-purple {
+    color: #312141;
+    border-color: #312141;
+}
+
+.btn-outline-purple:hover {
+    background-color: #312141;
+    color: white;
+}
+.addorderheader{
+    text-align: center;
+      background-color: rgb(218 209 228 / 35%);
+      font-size: 40px;
+      font-weight: bold;
+      font-family: -webkit-pictograph;
+      color: #312141;
+}
+.addordercontainer{
+    border-radius: 15px;
+       border: 1px #dad1e4 solid !important; 
+      /* margin: 2%; */
+      padding: 0;
+      text-align: left;
+}
+.btn-purple{
+    margin: 4% 7% 0% 35%;
+    background-color: #312141;
+    color: white;
+    border-color: #312141 !important; 
+}
+
+.btn-purple:hover{
+    background-color: #1e1429;
+    color: white;
+    border-color: #1e1429; 
+}

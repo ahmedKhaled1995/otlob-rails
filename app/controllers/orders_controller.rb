@@ -3,6 +3,20 @@ class OrdersController < ApplicationController
    
     def index
       @orders = Order.all
+
+      # @order_friends = {friends: []}
+      # @orders.each do |order|
+      #   @order_fri=OrderFriend.where(order_id:order.id)
+      #   @order_friends[:friends] <<  @order_fri
+
+      # # @orders.each do |order|
+      # #    @order_friends=OrderFriend.where(order_id:order.id)
+      # # p "hnaaaaaaaaaaaaaaaaaaaaaaaa" 
+      # # p @order_friends
+      # end
+     
+
+  
       # @friends = Friend.where(user_id: current_user.id)
       # @friends.each do |friend|
       #   user = User.find_by(email: friend.email)
@@ -98,21 +112,26 @@ class OrdersController < ApplicationController
 
 def addGrouptoOrder
   group_name = params[:group_name]
-  @group = Group.find_by(user_id: current_user.id,name:group_name)
- 
-  @friendsingroup = {friends: []}
-  @results = @group.group_friends.each do |group_friend|
-    # @friendsingroup[:friends] <<  group_friend.friend 
+    @group = Group.find_by(user_id: current_user.id,name:group_name)
+    
+  # // 2 arrays 1 for friends ids and another for same user instance 
+    @friendsingroup = {friends: []}
+    @friendsingroupids={friendsid: []}
+
+    @results = @group.group_friends.each do |group_friend|
+   
+    @friendsingroupids[:friendsid] <<  group_friend.friend.id
+   
     @users=User.find_by(email:group_friend.friend.email)
     @friendsingroup[:friends] <<  @users
-    
 
+    
   end
 
 
   respond_to do |format|
     format.html
-    format.json { render json: @friendsingroup}
+    format.json { render json: [@friendsingroupids, @friendsingroup]}
   end
 end
 
@@ -122,12 +141,13 @@ end
       friend_email = params[:friend_email]
    
       @friends=Friend.find_by(email: friend_email)
+      @friendid=Friend.find_by(email: friend_email).id
 # // not use user directly in case he writes email not of his friends       
-      @users=User.find_by(email: @friends.email)
+      @user=User.find_by(email: @friends.email)
 
       respond_to do |format|
         format.html
-        format.json {render json: @users}
+        format.json {render json: [@friendid, @user]}
 
 
       end
