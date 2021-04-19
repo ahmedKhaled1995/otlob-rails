@@ -6,15 +6,23 @@ class Notification < ApplicationRecord
   enum category: [:invite, :accepte]
 
   # This method is for testing and debugging only
-  def self.create(user_id)
+  def self.create(sender_id, receiver_id, category)
     new_notification = Notification.new
-    new_notification.receiver_id = 2
-    new_notification.category = 0
+    new_notification.receiver_id = receiver_id
+    new_notification.category = category
     new_notification.order_id = 1
-    new_notification.sender_id = 1
+    new_notification.sender_id = sender_id
     new_notification.viewed = false
     new_notification.save()
-    ActionCable.server.broadcast("notification_channel_#{user_id}", new_notification)   # notification_channel_user_id
+    data = {
+      :receiver => new_notification.receiver,
+      :category => category,
+      :order => new_notification.order,
+      :sender => new_notification.sender,
+      :viewed => new_notification.viewed
+    }
+    puts data
+    ActionCable.server.broadcast("notification_channel_#{receiver_id}", data)   # notification_channel_user_id
   end
 
 end
