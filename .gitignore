@@ -68,3 +68,7 @@ yarn-debug.log*
 
 # Ignore application configuration
 /config/application.yml
+
+#ignore some migration files (error)
+/db/migrate/20210419120659_droporderfriend.rb
+/db/migrate/20210419042601_remove_status_columns_from_order_friend.rb
