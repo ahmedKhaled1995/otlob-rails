@@ -15,7 +15,6 @@ class User < ApplicationRecord
   devise :database_authenticatable,
    :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :linkedin, :google_oauth2]
 
-
   def get_image
     if image
       return image
