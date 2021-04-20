@@ -1,6 +1,7 @@
+<%= action_cable_meta_tag %>
 <h1>Order Details</h1>
 
-<table class="table">
+<table class="table" id="orderTable">
   <thead class="tbhead">
   <tr class="tbrow">
   <th scope="col">Person   </th>
@@ -13,7 +14,7 @@
   </thead>
   <tbody>
   <tr lass="tbrow">
-    <td> <%= render @order.items %> </td>
+     <td> <%= render @order.items %> </td>
   </tr>
   
   </tbody>

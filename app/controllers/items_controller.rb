@@ -10,6 +10,14 @@ class ItemsController < ApplicationController
       @item = @order.items.create(item_params)
       @item.user_id = current_user.id
       @item.save
+      
+      ActionCable.server.broadcast "orders",
+        full_name: @item.full_name,
+        name: @item.name,
+        amount: @item.amount,
+        price: @item.price,
+        comment: @item.comment
+     
       redirect_to order_path(@order)
     end
     
@@ -32,6 +40,7 @@ class ItemsController < ApplicationController
   
       redirect_to @order
     end 
+
 
     private
       def item_params
