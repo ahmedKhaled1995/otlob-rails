@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
       @item.user_id = current_user.id
       @item.save
       
-      ActionCable.server.broadcast "orders",
+      ActionCable.server.broadcast "order_#{params[:order_id]}",
         full_name: @item.full_name,
         name: @item.name,
         amount: @item.amount,
