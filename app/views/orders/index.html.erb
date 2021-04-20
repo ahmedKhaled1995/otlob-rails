@@ -27,7 +27,8 @@
           </td>
 
           <td>
-               <% order.friends %>
+              <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>
+              <%= @order_friend.count %>
           <td>
                <%= order.status %>
           </td>
