@@ -46,17 +46,29 @@
         border: 1px #dad1e4 solid;
         margin: 6% 4% 0% 4%;
         padding: 2% 4%;
-        text-align: left;">
+        text-align: left; 
+        overflow-y: scroll;
+        height:500px">
+
         <legend style="argin-left: 0em;
         padding: 0px 7px;
         width: auto;
         color: #312141;
         font-size: 30px;
         font-weight: bold;
-        font-family: -webkit-body;">Friends</legend>
+        font-family: -webkit-body;
+       
+        ">Friends</legend>
                 <table class="table  orderfriendtable">
- 
+                  <thead ><label class="form-label" style="float:left">Number Of Friends Invited : </label>
+                  <input id="numberoffriends" class="form-control" disabled style="width: 22%;
+                  float: right;" value="0">
+                  <br>
+                  <hr>
+                  </thead>
                   <tbody id="orderfriends">
+                  
+
                  
                       
                 </tbody>

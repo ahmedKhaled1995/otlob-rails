@@ -21,13 +21,14 @@
             <%= link_to order.restaurant.name, order %>
           </td>
           <td> 
-              <% @order_friend=OrderFriend.where(order_id:order.id) %>
+              <% @order_friend=OrderFriend.where(order_id:order.id,status:0) %>
               <%= @order_friend.count %>
         
           </td>
 
           <td>
-               <% order.friends %>
+              <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>
+              <%= @order_friend.count %>
           <td>
                <%= order.status %>
           </td>
