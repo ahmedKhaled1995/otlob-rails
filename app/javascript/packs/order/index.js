@@ -1,8 +1,9 @@
 
 //appned all rows id to array(n.b row is unique by friend id)
-currentFriends=[]
+
 //var uniqueItems=[] ;
 function checkrows(){
+  currentFriends=[];
    $('.orderfriendtable > tbody  > tr').each(function(index, tr) { 
          currentFriends.push(tr.id)
         
@@ -181,11 +182,12 @@ $(document).ready(function() {
 //   return currentFriends;
 // }
 
-// $(document).on("click",'.removefriend',function(){
-//   // console.log(currentFriends)
-//   idvalue =$(this).closest('tr').attr('id')
-//  // console.log(idvalue)
-//   $(this).closest('tr').remove(); 
-//   deleterows(idvalue);
-//   // allIds()
-// });
+$(document).on("click",'.removefriend',function(){
+ 
+  idvalue =$(this).closest('tr').attr('id')
+  $(this).closest('tr').remove(); 
+ 
+ // deleterows(idvalue);
+   allIds()
+   //console.log(uniqueItems)
+});
