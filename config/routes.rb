@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :group_friends
   end
   
+  mount ActionCable.server => '/cable'
+  
   resources :orders do
     resources :items
     resources :order_friends

@@ -1,22 +1,21 @@
-
 <tr>
-<td> <%= item.full_name   %> </td>
-<td> <%= item.name   %> </td>
-<td> <%= item.amount %> </td>
-<td> <%= item.price  %> </td>
-<td> <%= item.comment %> </td>
+ <td> <%= item.full_name   %> </td>
+ <td> <%= item.name   %> </td>
+ <td> <%= item.amount %> </td>
+ <td> <%= item.price  %> </td>
+ <td> <%= item.comment %> </td>
 
-<% if @order.status == "waiting" %>
-<% if current_user.id == item.user_id %>
-    <td><%= link_to "Edit", edit_order_item_path(@order, item) %>
-    <%= link_to "Delete", order_item_path(@order, item),
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %></td>
-<% else %>
-<td></td>
-<% end %>  
-<% else %>
-<td></td>
-<% end %> 
+ <% if @order.status == "waiting" %>
+ <% if current_user.id == item.user_id %>
+     <td><%= link_to "Edit", edit_order_item_path(@order, item) %>
+     <%= link_to "Delete", order_item_path(@order, item),
+                     method: :delete,
+                     data: { confirm: "Are you sure?" } %></td>
+ <% else %>
+ <td></td>
+ <% end %>  
+ <% else %>
+ <td></td>
+ <% end %> 
 </tr>
  
