@@ -1,12 +1,11 @@
 <%= action_cable_meta_tag %>
 
-<h1>Order Details</h1>
-<%= link_to "show invited", order_order_friends_path(order_id:@order.id,status:0) %>
-<%= link_to "show joined", order_order_friends_path(order_id:@order.id,status:1) %>
+<h1 class="mb-3">Order Details</h1>
+<div class="row">
 
 
 
-<table class="table" id="orderTable">
+<table class="table col-md-8 mr-5" id="orderTable">
 <thead class="tbhead">
 <tr class="tbrow">
 <th scope="col">Person   </th>
@@ -18,15 +17,23 @@
 </tr>
 </thead>
 <tbody>
-<tr lass="tbrow">
+<tr class="tbrow">
 <td> <%= render @order.items %> </td>
 </tr>
 
 </tbody>
 </table>
 
+<div class="card col-md-3">
+  <h5 class="card-header">Friends</h5>
+  <div class="card-body">
+
+    <%= link_to "show invited", order_order_friends_path(order_id:@order.id,status:0) ,class:"btn btn-outline-purple col-md-5"%>
+    <%= link_to "show joined", order_order_friends_path(order_id:@order.id,status:1) ,class:"btn btn-outline-purple col-md-5"%>
+  </div>
+</div>
+
 <div id="order-id" data-order-id="<%= @order.id %>"></div>
 
-
-
+</div>
 

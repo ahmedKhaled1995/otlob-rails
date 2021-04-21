@@ -19,12 +19,21 @@ class OrderFriendsController < ApplicationController
   def destroy
     @order_friend = OrderFriend.find(params[:id])
     @order_friend.destroy
+
+         
+    @userid=User.find_by(email: @order_friend.friend.email).id 
+    @item=Item.where(order_id:params[:order_id] ,user_id:@userid)
+   
+    @item.each do |currentitem|
+      currentitem.destroy
+    end
+
      if params[:status] == "0"
        redirect_to order_order_friends_path(params[:order_id],status:0), notice: "Friend deleted successfully from invited friends .."
      else
       redirect_to order_order_friends_path(params[:order_id],status:1), notice: "Friend deleted successfully from joined friend .."
      end
 
-     
+
   end
 end
