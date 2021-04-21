@@ -23,7 +23,8 @@ class OrderFriendsController < ApplicationController
        redirect_to order_order_friends_path(params[:order_id],status:0), notice: "Friend deleted successfully from invited friends .."
      else
       redirect_to order_order_friends_path(params[:order_id],status:1), notice: "Friend deleted successfully from joined friend .."
-
      end
+
+     
   end
 end
