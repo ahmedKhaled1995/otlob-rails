@@ -45,6 +45,9 @@ class OrdersController < ApplicationController
     #  // list of ids of all friends added to the order
       @listofIds = session[:passed_variable] 
       @get_value = @listofIds
+      session[:passed_variable]=[]
+      # p "value------------------"
+      # p @get_value
 
 # 1st restaurant -> 2nd order -> 3rd order_friends
 
@@ -141,7 +144,7 @@ end
       friend_email = params[:friend_email]
    
       @friends=Friend.find_by(email: friend_email)
-      @friendid=Friend.find_by(email: friend_email).id
+      @friendid=Friend.find_by(email: friend_email)
 # // not use user directly in case he writes email not of his friends       
       @user=User.find_by(email: @friends.email)
 
