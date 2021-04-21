@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
       # p "value------------------"
       # p @get_value
 
-# 1st restaurant -> 2nd order -> 3rd order_friends
+    # 1st restaurant -> 2nd order -> 3rd order_friends
     # if restaurant_params != ""
       @restaurant = Restaurant.new(restaurant_params)
       if @restaurant.save
@@ -74,6 +74,15 @@ class OrdersController < ApplicationController
                       end
                 end
                 p "order is added----------------------"
+
+                # Ahmad Khaled added code for inviting friends added to that order
+                puts '******************************'
+                @order.order_friends.each do |order_friend|
+                  puts "#{order_friend.friend.email} has been notified"
+                  Notification.notify(order_friend)
+                end
+                puts '******************************'
+
                 redirect_to @order
                 # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
               else
