@@ -2,11 +2,6 @@ import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', ()=>{
 
-<<<<<<< HEAD
-  // console.log(notificationsElement.innerHTML);
-
-=======
->>>>>>> d305d2cccdea16aca847a421eb110537a24e074b
   // Getting id of user to establish a connection
   const idDivElement = document.querySelector("#user-id");
   if (idDivElement){
