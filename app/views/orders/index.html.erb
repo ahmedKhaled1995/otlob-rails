@@ -32,6 +32,7 @@
           <td>
               <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>
               <%= @order_friend.count %>
+          </td>
           <td>
                <%= order.status %>
           </td>
@@ -51,9 +52,20 @@
           </td>
           <td>
           <%= link_to order.restaurant.name, order.restaurant %>
-          </td>
-          <td> <%# order.friends %> </td>
-          <td></td>
+        </td>
+       
+        <td> 
+            <% @order_friend=OrderFriend.where(order_id:order.id,status:0) %>
+            <%= @order_friend.count %>
+      
+        </td>
+
+
+        <td>
+            <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>
+            <%= @order_friend.count %>
+        </td>
+
           <td>
           <%= order.status %>
           </td>
