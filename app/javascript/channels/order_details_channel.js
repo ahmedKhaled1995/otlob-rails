@@ -12,49 +12,20 @@ if(orderID){
       $("#orderTable").removeClass('hidden')
       if(data.action == "add")
         return $('#orderTable').append(this.renderOrder(data));
-      else if(data.action == "edit"){
-        
-      }
+
+      else if(data.action == "edit")
+        return $(`#${data.id}`).replaceWith(this.renderOrder(data));
          
       else if(data.action == "delete")
         return $(`#${data.id}`).remove();
     },
 
     renderOrder: function(data) {
-      return "<tr>"+ "<td>" + data.full_name + "</td>" + "<td>" + data.name + "</td>"
+      return `<tr id=${data.id}>`+ "<td>" + data.full_name + "</td>" + "<td>" + data.name + "</td>"
       +"<td>" + data.amount + "</td>" 
       + "<td>" + data.price + "</td>" 
       + "<td>" + data.comment + "</td>"+"</tr>"
     },
-    editItem: function(data){
-
-    }
-
-
   });
  }
 })
-
-// consumer.subscriptions.create("OrderDetailsChannel" ,{
-//   connected() {
-//     // Called when the subscription is ready for use on the server
-//     console.log("Connected to OrderDetailsChannel"+order_id);
-//   },
-
-//   disconnected() {
-//     // Called when the subscription has been terminated by the server
-//   },
-
-//   received(data) {
-//     // Called when there's incoming data on the websocket for this channel
-//     console.log("here"+data);
-//     order = document.getElementsById("orderTable")
-//     order.innerHtml += 
-//     "<tr>"+ 
-//     "<td>" + data.full_name + "</td>" 
-//     + "<td>" + data.name + "</td>"
-//     +"<td>" + data.amount + "</td>" 
-//     + "<td>" + data.price + "</td>" 
-//     + "<td>" + data.comment + "</td>"+"</tr>"
-//   }
-// });

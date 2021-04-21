@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
       @item.save
       
       ActionCable.server.broadcast "order_#{params[:order_id]}",
+        id: @item.id,
         full_name: @item.full_name,
         name: @item.name,
         amount: @item.amount,
