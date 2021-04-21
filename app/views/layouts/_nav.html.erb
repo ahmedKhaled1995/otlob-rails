@@ -2,9 +2,9 @@
 <%= javascript_pack_tag 'notifications/notifications' %>
 
 <nav class="navbar navbar-expand-lg navbar-dark class1 justify-content-between">
-  <a class="navbar-brand" href="#" id="username">
+  <div class="container">
+    <a class="navbar-brand" href="#" id="username">
     <%=image_tag("logo.png", class:"brand-image") %>
-    <%= current_user.try(:full_name) %>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -12,11 +12,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-       <%= link_to "Home", authenticated_root_path, class: "nav-item nav-link"  %>
-      </li>
-       <% if user_signed_in? %>
-       <% new_notifications = current_user.receiver_notification.where(viewed: false) %>
+      <% if user_signed_in? %>
+           <li class="nav-item">
+              <a href="/users/<%= current_user.id %>" class="nav-item nav-link">
+                <img src="<%= current_user.get_image %>" alt="profile_pic" width="25" height="25"><span class="ml-2 font-weight-light"><%= current_user.full_name  %></span>
+              </a>
+            </li>
+                   <% new_notifications = current_user.receiver_notification.where(viewed: false) %>
         <%# <%= link_to "Edit profile", edit_user_registration_path %> 
         <li class="nav-item dropdown">
           <a id="bell-link" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -44,7 +46,9 @@
             <a class="dropdown-item" href="#">View All Notifications</a>
           </div>
       </li>
-      <% end %>
+         <li class="nav-item">
+       <%= link_to "Home", authenticated_root_path, class: "nav-item nav-link"  %>
+      </li>
       <li class="nav-item">
         <%= link_to "Friends", friends_path, class: "nav-item nav-link"  %>
       </li>
@@ -56,9 +60,6 @@
       <li class="nav-item">
         <%= link_to "Orders", orders_path, class: "nav-item nav-link"  %>
       </li>
-
-      <% if user_signed_in? %>
-        <%# <%= link_to "Edit profile", edit_user_registration_path %> 
         <li class="nav-item">
           <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-item nav-link"  %>
         </li>
@@ -72,6 +73,7 @@
       <% end %>
     </ul>
 
+  </div>
   </div>
 </nav>
 

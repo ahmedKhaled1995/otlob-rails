@@ -11,13 +11,14 @@ class ItemsController < ApplicationController
       @item.user_id = current_user.id
       @item.save
       
-      ActionCable.server.broadcast "orders",
+      ActionCable.server.broadcast "order_#{params[:order_id]}",
+        id: @item.id,
         full_name: @item.full_name,
         name: @item.name,
         amount: @item.amount,
         price: @item.price,
-        comment: @item.comment
-     
+        comment: @item.comment,
+        action: "add"
       redirect_to order_path(@order)
     end
     
@@ -26,6 +27,14 @@ class ItemsController < ApplicationController
   
     def update
       if @item.update(item_params)
+        ActionCable.server.broadcast "order_#{params[:order_id]}",
+        id: @item.id,
+        full_name: @item.full_name,
+        name: @item.name,
+        amount: @item.amount,
+        price: @item.price,
+        comment: @item.comment,
+        action: "edit"
         redirect_to @order
       else
         render :edit
@@ -37,6 +46,10 @@ class ItemsController < ApplicationController
       @item = @order.items.find(params[:id])
 
       @item.destroy
+
+      ActionCable.server.broadcast "order_#{params[:order_id]}",
+        id: @item.id,
+        action: "delete"
   
       redirect_to @order
     end 
