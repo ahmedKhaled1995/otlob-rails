@@ -10,7 +10,14 @@ if(orderID){
   consumer.orders = consumer.subscriptions.create({channel: 'OrderDetailsChannel', order_id: order_id}, {  
     received: function(data) {
       $("#orderTable").removeClass('hidden')
-      return $('#orderTable').append(this.renderOrder(data));
+      if(data.action == "add")
+        return $('#orderTable').append(this.renderOrder(data));
+      else if(data.action == "edit"){
+        
+      }
+         
+      else if(data.action == "delete")
+        return $(`#${data.id}`).remove();
     },
 
     renderOrder: function(data) {
@@ -18,7 +25,12 @@ if(orderID){
       +"<td>" + data.amount + "</td>" 
       + "<td>" + data.price + "</td>" 
       + "<td>" + data.comment + "</td>"+"</tr>"
+    },
+    editItem: function(data){
+
     }
+
+
   });
  }
 })
