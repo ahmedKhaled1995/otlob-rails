@@ -36,7 +36,7 @@
               <% if notification.category == "invite" %>
                 <a class="dropdown-item" href="orders/<%= notification.order.id %>" data-seen="false" data-id="<%= notification.id %>"> <%= notification.sender.full_name %> Has Invited You to His Order</a>
               <% else %>
-                <a class="dropdown-item" href="#" data-seen="false" data-id="<%= notification.id %>"> <%= notification.sender.full_name %> Joined Your <%= notification.order.order_for %> </a>
+                <a class="dropdown-item" href="orders/<%= notification.order.id %>" data-seen="false" data-id="<%= notification.id %>"> <%= notification.sender.full_name %> Joined Your <%= notification.order.order_for %> </a>
               <% end %>
               <div class="dropdown-divider"></div>
             <% end %>
