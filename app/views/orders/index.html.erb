@@ -8,6 +8,7 @@
   <th scope="col">Joined    </th>
   <th scope="col">Status  </th>
   <th scope="col">Actions </th>
+  
   </tr>
   </thead>
   <tbody>
@@ -18,13 +19,15 @@
             <%= order.order_for %>
           </td>
           <td>
-            <%= link_to order.restaurant.name, order %>
+            <%= link_to order.restaurant.name, order.restaurant %>
           </td>
+         
           <td> 
               <% @order_friend=OrderFriend.where(order_id:order.id,status:0) %>
               <%= @order_friend.count %>
         
           </td>
+
 
           <td>
               <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>

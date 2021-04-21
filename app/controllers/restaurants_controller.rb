@@ -12,9 +12,13 @@ class RestaurantsController < ApplicationController
           render :new
         end
       end
+      def show 
+        @restaurant = Restaurant.find(params[:id])
+
+      end
 
       private
       def restaurant_params
-        params.require(:restaurant).permit(:name)
+        params.require(:restaurant).permit(:name, :menu)
       end
 end

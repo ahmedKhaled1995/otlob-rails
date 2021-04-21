@@ -59,6 +59,9 @@ class OrdersController < ApplicationController
             @order.user_id= current_user.id
 
             if @order.save
+              puts "************************"
+              puts @order.restaurant.menu
+              puts "************************"
               if @get_value != nil
                 @get_value.each do |currentfriendid|
                   #@friends=Friend.find_by(id: currentfriendid)
@@ -183,7 +186,7 @@ end
       end
 
       def restaurant_params
-        params.require(:order).permit(:name)
+        params.require(:order).permit(:name, :menu)
       end
       
 
