@@ -4,6 +4,9 @@ class Order < ApplicationRecord
 
     has_many :groups 
     has_many :friends
+    has_many :order_friends, dependent: :destroy
+
+    has_many :notifications, dependent: :destroy
     
     # has_many :group_friends
     has_many :items, dependent: :destroy

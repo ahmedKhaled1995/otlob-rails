@@ -2,6 +2,11 @@ import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', ()=>{
 
+<<<<<<< HEAD
+  // console.log(notificationsElement.innerHTML);
+
+=======
+>>>>>>> d305d2cccdea16aca847a421eb110537a24e074b
   // Getting id of user to establish a connection
   const idDivElement = document.querySelector("#user-id");
   if (idDivElement){
@@ -38,7 +43,7 @@ document.addEventListener('turbolinks:load', ()=>{
           }
           let newNotification = "";
           let oldNotifications = notificationsElement.innerHTML;
-          if(data.category === 0){  // Invitaion
+          if(data.category === "invite"){  
             newNotification = `<a class="dropdown-item" href="#" data-seen="false" data-id="${data.notification_id}"> ${data.sender.full_name}
                                   Has Invited You to His Order</a>`
             newNotification += `<div class="dropdown-divider"></div>`;
