@@ -54,7 +54,6 @@ $(document).ready(function() {
                 if (!checkForMatch(friendsids,res[0].id)) {
                   $('.friendexistalert').css("display", "none");
                 //mfrod hna y7sl error :) res[0] id just an id
-              
                 if(res[0].id.get_image == null)
                   {
                     

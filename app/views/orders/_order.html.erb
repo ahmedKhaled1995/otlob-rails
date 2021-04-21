@@ -1,6 +1,10 @@
 <%= action_cable_meta_tag %>
 
 <h1>Order Details</h1>
+<%= link_to "show invited", order_order_friends_path(order_id:@order.id,status:0) %>
+<%= link_to "show joined", order_order_friends_path(order_id:@order.id,status:1) %>
+
+
 
 <table class="table" id="orderTable">
 <thead class="tbhead">
