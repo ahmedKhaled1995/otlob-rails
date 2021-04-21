@@ -51,10 +51,10 @@ $(document).ready(function() {
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
             var imageUrl;
-                if (!checkForMatch(friendsids,res[0].id)) {
+                if (!checkForMatch(friendsids,res[0])) {
                   $('.friendexistalert').css("display", "none");
                 //mfrod hna y7sl error :) res[0] id just an id
-                if(res[0].id.get_image == null)
+                if(result.image == null)
                   {
                     
                      imageUrl= `https://gravatar.com/avatar/${CryptoJS.MD5(result.email).toString()}?s=32&d=identicon&r=PG`
@@ -62,15 +62,15 @@ $(document).ready(function() {
 
                   }
                   else{
-                    imageUrl=res[0].get_image
+                    imageUrl=result.image
                     // console.log(res.get_image)
                   }
                   
-                  content ='<tr class="card" id="'+res[0].id+'" style="margin-bottom: 20px;">'+
+                  content ='<tr class="card" id="'+res[0]+'" style="margin-bottom: 20px;">'+
                   '<td class="card-header"><img src="'+imageUrl+'" alt="profile_picture" width="50" height="50">'
-                  +res[0].id+' : '+result.full_name+'</td><td>'+
+                  +res[0]+' : '+result.full_name+'</td><td>'+
                   result.email+'</td><td class="card-footer"><button class="btn btn-danger removefriend" id="removefriend'+
-                  res[0].id+'" style="margin-left: 70%;">remove</button></td></tr>' ;
+                  res[0]+'" style="margin-left: 70%;">remove</button></td></tr>' ;
                   $('#orderfriends').last().append(content);
                 }
                 else{
@@ -112,14 +112,14 @@ $(document).ready(function() {
               //check if current row id already exist
                   if (!checkForMatch(friendsids,res[0].friendsid[i])) {
 
-                    if(res[0].friendsid[i].get_image == null)
+                    if(result[i].image == null)
                     {
                        imageUrl= `https://gravatar.com/avatar/${CryptoJS.MD5(result[i].email).toString()}?s=32&d=identicon&r=PG`
                       //  console.log(imageUrl,)
   
                     }
                     else{
-                      imageUrl=res.get_image
+                      imageUrl=result[i].image
                       // console.log(res.get_image)
                     }
 
