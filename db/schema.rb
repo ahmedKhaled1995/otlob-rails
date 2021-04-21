@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_234101) do
+ActiveRecord::Schema.define(version: 2021_04_21_200019) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.integer "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -76,15 +104,6 @@ ActiveRecord::Schema.define(version: 2021_04_20_234101) do
     t.index ["order_id"], name: "index_order_friends_on_order_id"
   end
 
-  create_table "orderfriends", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "friend_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["friend_id"], name: "index_orderfriends_on_friend_id"
-    t.index ["order_id"], name: "index_orderfriends_on_order_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.integer "order_for", default: 0
     t.integer "user_id", null: false
@@ -118,6 +137,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_234101) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "friends", "orders"
   add_foreign_key "friends", "users"
   add_foreign_key "group_friends", "friends"
@@ -128,8 +149,6 @@ ActiveRecord::Schema.define(version: 2021_04_20_234101) do
   add_foreign_key "notifications", "orders"
   add_foreign_key "order_friends", "friends"
   add_foreign_key "order_friends", "orders"
-  add_foreign_key "orderfriends", "friends"
-  add_foreign_key "orderfriends", "orders"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end
