@@ -19,7 +19,16 @@
             <%= form.text_field :name ,class:"form-control" %>
       </div>
 
-  
+
+      <div class="alert alert-warning alert-dismissible fade show restautantalert" role="alert" style="display: none;">
+        <strong>Warning!</strong> Restaurant name shoudn't be empty.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+
       <div class="form-divs">
         <label class:"form-label col-md-12">Friends</label>
         <div class="row">
@@ -29,6 +38,23 @@
       </div>
 
 
+      <div class="alert  alert-danger alert-dismissible fade show friendalert" role="alert" style="display: none;">
+        <strong>Error!</strong> This friend is not in your friends list !!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <div class="alert alert-dark alert-dismissible fade show friendexistalert" role="alert" style="display: none;">
+        <strong>Warning!</strong> This Friend has already been added !!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+     </div>
+
+
+  
+
       <div class="form-divs">
       <label class:"form-label">Groups</label>
         <div class="row">
@@ -36,6 +62,15 @@
           <button class="btn btn-outline-purple col-md-3" id="groupsearch_form">Add Group</button>
         </div>
       </div>
+
+
+      <div class="alert alert-danger alert-dismissible fade show groupalert" role="alert" style="display: none;">
+          <strong>Error!</strong> This Group is not exist !!
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+     </div>
+
       
       <div>
          <%= form.submit class:"btn btn-purple" ,id:"submit-order"%>

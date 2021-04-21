@@ -44,13 +44,15 @@ $(document).ready(function() {
 
           data: {friend_email: frinedemail},
           success:function(res){
+            $('.friendalert').css("display", "none");
             friendsids=checkrows();
        
             //check if current row id already exist
             //res[1] -> user object , res[0] -> friend id
             result=res[1]
             var imageUrl;
-                if (!checkForMatch(friendsids,res[0])) {
+                if (!checkForMatch(friendsids,res[0].id)) {
+                  $('.friendexistalert').css("display", "none");
                 //mfrod hna y7sl error :) res[0] id just an id
               
                 if(res[0].id.get_image == null)
@@ -72,9 +74,17 @@ $(document).ready(function() {
                   res[0].id+'" style="margin-left: 70%;">remove</button></td></tr>' ;
                   $('#orderfriends').last().append(content);
                 }
+                else{
+                  $('.friendexistalert').css("display", "block");
+                }
 
                 allIds()
-          }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $('.friendalert').css("display", "block");
+
+            $('#fiendsearch').val("")
+         }
         });
         
   });
@@ -92,8 +102,7 @@ $(document).ready(function() {
             dataType:"json",
            data: {group_name: groupname},
             success:function(res){
-              
-             
+              $('.groupalert').css("display", "none");
 
             //  ---------------group-----------------
              result=res[1].friends
@@ -128,59 +137,59 @@ $(document).ready(function() {
                 }
             }
             allIds()
-            }
+            },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $('.groupalert').css("display", "block");
+            $('#groupsearch').val("")
+         }
           });
           
     });
   });
 
  function allIds(){
-        formData=checkrows();
-        //formData=uniqueItems;
-        // console.log('thisis',formData)
-            $.ajax({
-              type: 'GET',
-              url: "order_friend_params",
-              dataType: 'json',
-              data: {formData: formData},
-        
-          })
+      formData=checkrows();
+      //formData=uniqueItems;
+      // console.log('thisis',formData)
+          $.ajax({
+            type: 'GET',
+            url: "order_friend_params",
+            dataType: 'json',
+            data: {formData: formData},
+      
+        })
 }
+
+//disable submit if restaurant name isnot add 
+$(document).ready(function (){
+  $('#fiendsearch, #groupsearch,#order_name').change(function(){
+      if($("#order_name").val().length){
+          $('.restautantalert').css("display", "none");
+              $("#submit-order").prop('disabled', false);
+      } else {
+        $('.restautantalert').css("display", "block");
+        $("#submit-order").prop('disabled', true);
+      }
+  });
+});
+
+//alerts
+var alertList = document.querySelectorAll('.alert')
+alertList.forEach(function (alert) {
+  new coreui.Alert(alert)
+})
+
+
 // $('#submit-order').on("click", function (e) {
-//   currentFriends=[];
-//   uniqueItems=[];uniqueItems
+//   restval=$('#order_name').val()
+//   if(restval == ""){
+//     e.preventDefault
+//     alert('please enter Restaurant name !!')
+//   }
 
 // });
 
 
-// function deleterows(idToRemove){
-//   for(var k = 0; k < uniqueItems.length; k++){
-//     if(uniqueItems[k] == idToRemove)
-//    {  
-//     uniqueItems.splice(k,1);
-//     }
-//     }
-
-//     for(var l = 0; l< currentFriends.length; l++){
-//       if(currentFriends[l] == idToRemove)
-//      {   
-//       currentFriends.splice(l,1);
-//       }
-//       }
-
-//   // oldfriendconut=  $('#numberoffriends').val();
-//   // newfriendconut=oldfriendconut-1;
-//   // $('#numberoffriends').val(newfriendconut)
-
-
-//   nooffriends=(uniqueItems.length)
-//   // console.log(uniqueItems)
-//   // console.log(nooffriends)
-  
-//   $('#numberoffriends').val(nooffriends);
-
-//   return currentFriends;
-// }
 
 $(document).on("click",'.removefriend',function(){
  

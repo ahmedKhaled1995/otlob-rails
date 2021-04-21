@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_064440) do
+ActiveRecord::Schema.define(version: 2021_04_20_234101) do
 
   create_table "friends", force: :cascade do |t|
     t.string "email"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 2021_04_20_064440) do
     t.index ["order_id"], name: "index_order_friends_on_order_id"
   end
 
+  create_table "orderfriends", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "friend_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_orderfriends_on_friend_id"
+    t.index ["order_id"], name: "index_orderfriends_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "order_for", default: 0
     t.integer "user_id", null: false
@@ -119,6 +128,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_064440) do
   add_foreign_key "notifications", "orders"
   add_foreign_key "order_friends", "friends"
   add_foreign_key "order_friends", "orders"
+  add_foreign_key "orderfriends", "friends"
+  add_foreign_key "orderfriends", "orders"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
 end

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
     before_action :set_order, only: [:show, :destroy]
+
    
     def index
       @orders = Order.all
@@ -50,7 +51,7 @@ class OrdersController < ApplicationController
       # p @get_value
 
 # 1st restaurant -> 2nd order -> 3rd order_friends
-
+    # if restaurant_params != ""
       @restaurant = Restaurant.new(restaurant_params)
       if @restaurant.save
             @order = Order.new(order_params)
@@ -58,22 +59,27 @@ class OrdersController < ApplicationController
             @order.user_id= current_user.id
 
             if @order.save
-              @get_value.each do |currentfriendid|
-                #@friends=Friend.find_by(id: currentfriendid)
-                @order_friend=OrderFriend.new
-                @order_friend.friend_id=currentfriendid
-                @order_friend.order_id= @order.id
-                  
-                    if  @order_friend.save
-                        p "friend is added to order---------------------"
-                    else
-                        p "friend is not added to order-------------------"
-                        render :new
-                    end
-               end
-              p "order is added----------------------"
-              redirect_to @order
-              # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
+              if @get_value != nil
+                @get_value.each do |currentfriendid|
+                  #@friends=Friend.find_by(id: currentfriendid)
+                  @order_friend=OrderFriend.new
+                  @order_friend.friend_id=currentfriendid
+                  @order_friend.order_id= @order.id
+                    
+                      if  @order_friend.save
+                          p "friend is added to order---------------------"
+                      else
+                          p "friend is not added to order-------------------"
+                          render :new
+                      end
+                end
+                p "order is added----------------------"
+                redirect_to @order
+                # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
+              else
+                p "order is added----------------------"
+                redirect_to @order
+              end
             else
               p "order is not added-------------------"
               render :new
@@ -82,8 +88,12 @@ class OrdersController < ApplicationController
         p "restaurant is added----------------------"
       else
         p "restaurant is not added-------------------"
-         render :new
+        #  render :new
+        # redirect_to '/orders/new'
       end
+    # else
+    #   p "-----------------------empty resaurant--------------------"
+    # end
       
     end
   
