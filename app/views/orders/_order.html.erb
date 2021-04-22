@@ -28,7 +28,7 @@
   <h5 class="card-header">Friends</h5>
   <div class="card-body">
 
-    <%= link_to "show invited", order_order_friends_path(order_id:@order.id) ,class:"btn btn-outline-purple col-md-5"%>
+    <%= link_to "show invited", order_order_friends_path(order_id:@order.id, status:2) ,class:"btn btn-outline-purple col-md-5"%>
     <%= link_to "show joined", order_order_friends_path(order_id:@order.id,status:1) ,class:"btn btn-outline-purple col-md-5"%>
   </div>
 </div>

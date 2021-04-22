@@ -6,12 +6,19 @@ class OrderFriendsController < ApplicationController
       @invitbit="0"
       @order=params[:order_id]
     
-    else
+    elsif (params[:status] == "1")
       @orders_friends = OrderFriend.where(order:params[:order_id],status:1)
       @invitbit="1"
       @order=params[:order_id]
+    else
+      @orders_friends = OrderFriend.where(order:params[:order_id])
+      @invitbit="2"
+      @order=params[:order_id]
     end
+    
   end
+
+
 
   def show
   end
