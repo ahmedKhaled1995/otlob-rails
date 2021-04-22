@@ -10,7 +10,7 @@ class OrderFriendsController < ApplicationController
       @orders_friends = OrderFriend.where(order:params[:order_id],status:1)
       @invitbit="1"
       @order=params[:order_id]
-    else
+    else  # All members
       @orders_friends = OrderFriend.where(order:params[:order_id])
       @invitbit="2"
       @order=params[:order_id]
