@@ -34,9 +34,11 @@
           <div id="notifications">
             <% new_notifications.each do |notification| %>
               <% if notification.category == "invite" %>
-                <a class="dropdown-item" href="orders/<%= notification.order.id %>" data-seen="false" data-id="<%= notification.id %>"> <%= notification.sender.full_name %> Has Invited You to His Order</a>
+                <a class="dropdown-item font-weight-bold" href="/orders/<%= notification.order.id %>" data-seen="false" data-id="<%= notification.id %>">
+                 <%= notification.sender.full_name %> Has Invited You to His Order
+                </a>
               <% else %>
-                <a class="dropdown-item" href="orders/<%= notification.order.id %>" data-seen="false" data-id="<%= notification.id %>"> <%= notification.sender.full_name %> Joined Your <%= notification.order.order_for %> </a>
+                <a class="dropdown-item font-weight-bold" href="/orders/<%= notification.order.id %>" data-seen="false" data-id="<%= notification.id %>"> <%= notification.sender.full_name %> Joined Your <%= notification.order.order_for %> </a>
               <% end %>
               <div class="dropdown-divider"></div>
             <% end %>
@@ -44,7 +46,7 @@
             <% if new_notifications.count == 0 %>
               <p id="no-new-notification" class="text-center"> No New Notifications </p>
             <% end %>
-            <a class="dropdown-item" href="#">View All Notifications</a>
+            <a class="dropdown-item" href="/notifications">View All Notifications</a>
           </div>
       </li>
          <li class="nav-item">

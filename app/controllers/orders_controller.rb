@@ -27,7 +27,25 @@ class OrdersController < ApplicationController
     end
   
     def show
+      # Checking if the order to be view is created by the user
+      if @order.user.id == current_user.id
+        return
+      end
 
+      invited_user = @order.order_friends.find_by(friend: Friend.find_by(email: current_user.email))
+      if invited_user
+        # Updating the status of the accepted user to be accepted
+        invited_user.status = true;
+        if invited_user.save
+          # Notifing the order creator than the invited user has accepted the invitaion
+          Notification.notify_accept(@order, current_user)
+          return 
+        else
+          return redirect_to orders_path, alert: "Error occured. Please try again"
+        end
+      else
+        return redirect_to orders_path, alert: "Order no longer exists"
+      end
     end
   
     def new
@@ -59,9 +77,6 @@ class OrdersController < ApplicationController
             @order.user_id= current_user.id
 
             if @order.save
-              puts "************************"
-              puts @order.restaurant.menu
-              puts "************************"
               if @get_value != nil
                 @get_value.each do |currentfriendid|
                   #@friends=Friend.find_by(id: currentfriendid)
@@ -79,12 +94,11 @@ class OrdersController < ApplicationController
                 p "order is added----------------------"
 
                 # Ahmad Khaled added code for inviting friends added to that order
-                puts '******************************'
+                # puts '******************************'
                 @order.order_friends.each do |order_friend|
-                  puts "#{order_friend.friend.email} has been notified"
-                  Notification.notify(order_friend)
+                  Notification.notify_invite(order_friend)
                 end
-                puts '******************************'
+                # puts '******************************'
 
                 redirect_to @order
                 # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   

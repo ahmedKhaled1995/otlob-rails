@@ -1,5 +1,8 @@
 class NotificationsController < ApplicationController
 
+    def index
+    end
+
     def update
         puts params
         @notification = Notification.find(params[:id])
