@@ -32,7 +32,14 @@ class OrdersController < ApplicationController
         return
       end
 
-      invited_user = @order.order_friends.find_by(friend: Friend.find_by(email: current_user.email))
+      invited_user = NIL
+      @order.order_friends.each do |order_friend|
+        if order_friend.friend.email == current_user.email
+          invited_user = order_friend
+          break
+        end
+      end
+      
       if invited_user
         # Updating the status of the accepted user to be accepted
         invited_user.status = true;
