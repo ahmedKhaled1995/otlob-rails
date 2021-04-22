@@ -32,26 +32,29 @@ class OrdersController < ApplicationController
         return
       end
 
-      invited_user = NIL
+      @invited_user = NIL
       @order.order_friends.each do |order_friend|
         if order_friend.friend.email == current_user.email
-          invited_user = order_friend
+          @invited_user = order_friend
           break
         end
       end
       
-      if invited_user
+      if @invited_user
         # Updating the status of the accepted user to be accepted
-        invited_user.status = true;
-        if invited_user.save
-          # Notifing the order creator than the invited user has accepted the invitaion
-          Notification.notify_accept(@order, current_user)
-          return 
-        else
-          return redirect_to orders_path, alert: "Error occured. Please try again"
+        if @invited_user.status == false
+          @invited_user.status = true;
+          if @invited_user.save
+            # Notifing the order creator than the invited user has accepted the invitaion
+            Notification.notify_accept(@order, current_user)
+            return 
+          else
+            return redirect_to orders_path, alert: "Error occured. Please try again"
+          end
         end
       else
-        return redirect_to orders_path, alert: "Order no longer exists"
+        flash.now[:error] = "You are not/no longer invited to this order!"
+        return
       end
     end
   
