@@ -3,10 +3,10 @@
         <div class="col-md-6">
            <fieldset class="border p-2">
                 <legend class="w-auto">Latest Order</legend>
-                <% if @latestOrders %>
-                <% @latestOrders.each do |order| %>
+                <% if @latest_Orders %>
+                <% @latest_Orders.each do |order| %>
                 <div>
-                    <a class="col-md-12"> <%= order.order_for %> on <%= order.created_at %> </a>
+                    <a class="col-md-12"> <%= link_to "#{order.order_for} on #{order.created_at.strftime("%m/%d/%Y")}", order_path(order)%> </a>
                 </div>
                 <% end %>
                 <% else %>
@@ -20,19 +20,15 @@
                 <legend class="w-auto">Friends Activity</legend>
                 
                 <div>
-                  <% @orders.each do |order| %>
-                    <% order.friends.each do |friend| %>
-                        <% if User.find_by(email: friend.email).id == current_user.id || current_user.id == order.user_id %>
-                            <p class="px-3 text-left">
-                            <strong class="text-info"> <%= friend.email %></strong>
-                             <span> has created an order for </span>
-                                 <strong class="text-info"> <%= order.order_for%></strong>
+                    <% @latest_frineds_orders.each do |order| %>
+                         <p class="px-3 text-left">
+                                <strong class="text-info"> <%= link_to order.user.full_name, user_path(order.user)%></strong>
+                                <span> has created <%= link_to "an order for", order_path(order)%> </span>
+                                <strong class="text-info"> <%= order.order_for%></strong>
                                 <span> from </span>
-                                <strong class="text-info"><%= link_to order.restaurant.name, order%></strong>
-                                 </p>
-                                 <% end %>
-                                 <% end %>
-                                 <% end %>
+                                <strong class="text-info"><%= link_to order.restaurant.name, restaurant_path(order.restaurant)%></strong>
+                            </p>
+                    <% end %>
                 </div>
             
             </fieldset>

@@ -27,7 +27,35 @@ class OrdersController < ApplicationController
     end
   
     def show
+      # Checking if the order to be view is created by the user
+      if @order.user.id == current_user.id
+        return
+      end
 
+      @invited_user = NIL
+      @order.order_friends.each do |order_friend|
+        if order_friend.friend.email == current_user.email
+          @invited_user = order_friend
+          break
+        end
+      end
+      
+      if @invited_user
+        # Updating the status of the accepted user to be accepted
+        if @invited_user.status == false
+          @invited_user.status = true;
+          if @invited_user.save
+            # Notifing the order creator than the invited user has accepted the invitaion
+            Notification.notify_accept(@order, current_user)
+            return 
+          else
+            return redirect_to orders_path, alert: "Error occured. Please try again"
+          end
+        end
+      else
+        flash.now[:error] = "You are not/no longer invited to this order!"
+        return
+      end
     end
   
     def new
@@ -50,7 +78,7 @@ class OrdersController < ApplicationController
       # p "value------------------"
       # p @get_value
 
-# 1st restaurant -> 2nd order -> 3rd order_friends
+    # 1st restaurant -> 2nd order -> 3rd order_friends
     # if restaurant_params != ""
       @restaurant = Restaurant.new(restaurant_params)
       if @restaurant.save
@@ -74,6 +102,14 @@ class OrdersController < ApplicationController
                       end
                 end
                 p "order is added----------------------"
+
+                # Ahmad Khaled added code for inviting friends added to that order
+                # puts '******************************'
+                @order.order_friends.each do |order_friend|
+                  Notification.notify_invite(order_friend)
+                end
+                # puts '******************************'
+
                 redirect_to @order
                 # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
               else
@@ -174,7 +210,7 @@ end
       end
 
       def restaurant_params
-        params.require(:order).permit(:name)
+        params.require(:order).permit(:name, :menu)
       end
       
 

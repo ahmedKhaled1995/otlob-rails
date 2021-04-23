@@ -8,6 +8,7 @@
   <th scope="col">Joined    </th>
   <th scope="col">Status  </th>
   <th scope="col">Actions </th>
+  
   </tr>
   </thead>
   <tbody>
@@ -18,17 +19,20 @@
             <%= order.order_for %>
           </td>
           <td>
-            <%= link_to order.restaurant.name, order %>
+            <%= link_to order.restaurant.name, order.restaurant %>
           </td>
+         
           <td> 
-              <% @order_friend=OrderFriend.where(order_id:order.id,status:0) %>
+              <% @order_friend=OrderFriend.where(order_id:order.id,status:2) %>
               <%= @order_friend.count %>
         
           </td>
 
+
           <td>
               <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>
               <%= @order_friend.count %>
+          </td>
           <td>
                <%= order.status %>
           </td>
@@ -40,17 +44,28 @@
           <% end %>
           </td>
     <% else %>
-       <% @friends=OrderFriend.where(order_id:order.id) %>
+       <% @friends=OrderFriend.where(order_id:order.id,status:1) %>
         <% @friends.each do |orderfriend| %>
           <% if User.find_by(email: orderfriend.friend.email).id == current_user.id %>
           <td>
           <%= order.order_for %>
           </td>
           <td>
-          <%= link_to order.restaurant.name, order %>
-          </td>
-          <td> <% order.friends %> </td>
-          <td></td>
+          <%= link_to order.restaurant.name, order.restaurant %>
+        </td>
+       
+        <td> 
+            <% @order_friend=OrderFriend.where(order_id:order.id,status:2) %>
+            <%= @order_friend.count %>
+      
+        </td>
+
+
+        <td>
+            <% @order_friend=OrderFriend.where(order_id:order.id,status:1) %>
+            <%= @order_friend.count %>
+        </td>
+
           <td>
           <%= order.status %>
           </td>

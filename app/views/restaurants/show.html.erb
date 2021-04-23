@@ -1,0 +1,60 @@
+<style>
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	color: #333;
+	line-height: 1.6;
+}
+.pt-100{
+    padding-top:100px;
+}
+.pb-100{
+    padding-top:100px;
+}
+.mb-60 {
+	margin-bottom: 60px;
+}
+.section-title p {
+	font-size: 24px;
+	font-family: Oleo Script;
+	margin-bottom: 0px;
+	margin-top:50px;
+}
+.section-title h4 {
+	font-size: 40px;
+	text-transform: capitalize;
+	color: #FF5E18;
+	position: relative;
+	padding-bottom: 25px;
+}
+.section-title h4::before {
+	width: 80px;
+	height: 1.5px;
+	bottom: 0;
+	left: 50%;
+	margin-left: -40px;
+}
+.section-title h4::before, .section-title h4::after {
+	position: absolute;
+	content: "";
+	background-color: #FF5E18;
+}
+
+</style>
+<section class="about-area pt-60">
+         <div class="container">
+            <div class="row">
+               <div class="col-xl-12 mb-60">
+                  <div class="section-title text-center">
+                     <p>
+                     <%= @restaurant.name %> 
+                     </p>
+                     <h4>our menu</h4>
+                     <% if @restaurant.menu.attached? %>
+                    <%= image_tag @restaurant.menu, class: "img-responsive", style: "max-height:400px;" %>
+                       <% else %>
+                       <p>  there is no menu</p>
+                       <%end%>
+                  </div>
+               </div>
+            </div>

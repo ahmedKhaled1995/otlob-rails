@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :friends
+  resources :restaurants
 
   resources :notifications
 
