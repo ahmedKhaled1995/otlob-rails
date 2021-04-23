@@ -18,6 +18,20 @@ class GroupsController < ApplicationController
     end
 
     def create
+        # Check if group name exists
+        group_name = group_params.require(:group_name)
+        group_exists = false
+        current_user.groups.each do |group|
+            if group.name == group_name
+                group_exists = true
+                break
+            end
+        end
+        if group_exists
+            redirect_to groups_path, alert: "Group already exists"
+            return
+        end
+
         @group = Group.new(name: group_params.require(:group_name))
 
         @group.user_id = current_user.id

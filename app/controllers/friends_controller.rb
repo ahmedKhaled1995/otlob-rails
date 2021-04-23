@@ -17,16 +17,31 @@ class FriendsController < ApplicationController
     end
 
     def create
-        # First we check if user exists or not
+        # Check if user exists or not
         email = friend_params.require(:email)
-        #puts email
         user = User.find_by(email: email)
-        #puts "------------"
-        #puts user
         if !user
             redirect_to friends_path, alert: "The user doesn't exist!"
             return
         end
+        # Check the firend is not the same as user
+        if user == current_user
+            redirect_to friends_path, alert: "How sad :("
+            return
+        end
+        # Check if user already has friend and the firend
+        friend_already_exists = false
+        current_user.friends.each do |friend| 
+            if friend.email == email
+                friend_already_exists = true
+                break
+            end
+        end
+        if friend_already_exists
+            redirect_to friends_path, alert: "Wow you must really like that person!. Sorry you can have theim once"
+            return
+        end
+
         # Friend exists, eveything is well
         @friend = Friend.new(friend_params)
         @friend.user_id = current_user.id
