@@ -81,7 +81,6 @@ body {
 }
 
 .headbar{
-
   color:white;
   font-weight: 100px;
   margin-top: 2%;
@@ -91,13 +90,12 @@ body {
 
 .btnorder{
   margin: auto;
-  background-color: #312141;
+  background-color: rgb(49, 33, 65);;
   color: white;
-  /* margin-top: 25px; */
 }
 .btnorder:hover{
   margin: auto;
-  background-color: #312141;
+  background-color: #1e1429;
   color: white;
 }
 
