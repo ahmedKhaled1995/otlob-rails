@@ -197,11 +197,13 @@ end
     def addFriendtoOrder
      
       friend_email = params[:friend_email]
-      @friends=Friend.find_by(email: friend_email, user: current_user.id)
-    
-      @friendid=Friend.find_by(email: friend_email).id
-# // not use user directly in case he writes email not of his friends       
-      @user=User.find_by(email: @friends.email)
+   
+
+      @friends=Friend.find_by(email: friend_email,user:current_user.id)
+      @friendid=@friends.id
+# // not use user directly in case he writes email not of his friends     
+
+       @user=User.find_by(email: @friends.email)
 
       respond_to do |format|
         format.html
