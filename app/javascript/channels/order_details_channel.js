@@ -41,7 +41,7 @@ document.addEventListener('turbolinks:load', ()=>{
           return `<tr id=${data.id}>`+ "<td>" + data.full_name + "</td>" + "<td>" + data.name + "</td>"
           +"<td>" + data.amount + "</td>" 
           + "<td>" + data.price + "</td>" 
-          + "<td>" + data.comment + "</td>"+"</tr>"
+          + "<td>" + data.comment + "</td>"+"<td>"+"</td>"+"</tr>"
         },
       });
     }
