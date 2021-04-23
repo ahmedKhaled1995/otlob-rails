@@ -6,6 +6,7 @@
       <div class="card-header addorderheader">
         Add Order
       </div>
+
     <div class="card-body" > 
      
       <div class="form-divs">
@@ -18,6 +19,15 @@
             <%= form.label :restaurant_name ,class:"form-label" %><br>
             <%= form.text_field :name ,class:"form-control" %>
       </div>
+
+      <div class="alert alert-warning alert-dismissible fade show restautantalert" role="alert" style="display: none;">
+      <strong>Warning!</strong> Restaurant name shoudn't be empty.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+
+
       <div class="form-divs">
             <%= form.label :menu ,class:"form-label" %><br>
             <%= form.file_field :menu ,class:"form-control" %>
@@ -25,13 +35,7 @@
 
 
 
-      <div class="alert alert-warning alert-dismissible fade show restautantalert" role="alert" style="display: none;">
-        <strong>Warning!</strong> Restaurant name shoudn't be empty.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
+   
 
 
       <div class="form-divs">

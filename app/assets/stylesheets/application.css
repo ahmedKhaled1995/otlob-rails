@@ -44,6 +44,14 @@
       font-family: -webkit-pictograph;
       color: #312141;
 }
+
+.listorderheader,.listFriendsheader,.listgroupsheader{
+    text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: -webkit-pictograph;
+      color: #312141;
+}
 .addordercontainer{
     border-radius: 15px;
        border: 1px #dad1e4 solid !important; 

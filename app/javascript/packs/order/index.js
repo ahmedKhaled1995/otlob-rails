@@ -161,7 +161,7 @@ $(document).ready(function() {
 
 //disable submit if restaurant name isnot add 
 $(document).ready(function (){
-  $('#fiendsearch, #groupsearch,#order_name').change(function(){
+  $('#fiendsearch, #groupsearch,#order_name,#order_order_for,order_menu').change(function(){
       if($("#order_name").val().length){
           $('.restautantalert').css("display", "none");
               $("#submit-order").prop('disabled', false);

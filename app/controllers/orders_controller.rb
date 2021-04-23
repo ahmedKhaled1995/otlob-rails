@@ -114,17 +114,20 @@ class OrdersController < ApplicationController
                 # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
               else
                 p "order is added----------------------"
-                redirect_to @order
+                redirect_to @order, notice: "Friend added successfully"
               end
             else
               p "order is not added-------------------"
-              render :new
+              render :new 
             end
 
         p "restaurant is added----------------------"
       else
         p "restaurant is not added-------------------"
-        #  render :new
+        redirect_to new_order_path, alert: "Order not added !!"
+
+        # render :new, notice: "Friend added successfully"
+
         # redirect_to '/orders/new'
       end
     # else

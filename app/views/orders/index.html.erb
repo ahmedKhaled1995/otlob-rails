@@ -1,4 +1,6 @@
-<h1>Orders</h1>
+<h1 class="listorderheader">Orders
+<%= link_to "New Order", new_order_path, class: "btn  btnorder " ,style:"float:right" %>
+</h1>
 <table class="table">
   <thead class="tbhead">
   <tr >
@@ -80,4 +82,3 @@
   </tbody>
 </table>
 
-<%= link_to "New Order", new_order_path, class: "btn  btnorder"%>
