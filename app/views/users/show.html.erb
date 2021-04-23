@@ -1,8 +1,8 @@
     <%= stylesheet_link_tag "profile" %>
     
     <div class="userpage" >
-      <img src="https://i.postimg.cc/1XhtbKjV/cover.jpg" alt="upload Profile Picture" class="profile-image">
-      <h1 class="username"><%= @user.full_name %></h1>
+      <img src="<%=  @user.get_image %>"  alt="upload Profile Picture" class="profile-image">
+    <h1 class="username"><%= @user.full_name %></h1>
       <p class="usermail"><%= @user.email%></p>
       
     </div>
@@ -10,11 +10,11 @@
 
     <div class="content">
           <div class="social-description">
-            <h2>2</h2>
+            <h2><%= @user.friends.count %></h2>
             <p>Freinds</p>
           </div>
           <div class="social-description">
-            <h2>5</h2>
+            <h2><%= @user.orders.count %></h2>
             <p>orders</p>
           </div>
         </div>
