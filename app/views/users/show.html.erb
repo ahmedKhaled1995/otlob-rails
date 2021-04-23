@@ -10,11 +10,11 @@
 
     <div class="content">
           <div class="social-description">
-            <h2><%= @user.friends.count %></h2>
+            <h2><%= link_to  @user.friends.count , friends_path %></h2>
             <p>Freinds</p>
           </div>
           <div class="social-description">
-            <h2><%= @user.orders.count %></h2>
+            <h2><%= link_to  @user.orders.count , orders_path%></h2>
             <p>orders</p>
           </div>
         </div>
