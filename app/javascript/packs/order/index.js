@@ -173,10 +173,10 @@ $(document).ready(function (){
 });
 
 //alerts
-var alertList = document.querySelectorAll('.alert')
-alertList.forEach(function (alert) {
-  new coreui.Alert(alert)
-})
+// var alertList = document.querySelectorAll('.alert')
+// alertList.forEach(function (alert) {
+//   new coreui.Alert(alert)
+// })
 
 
 // $('#submit-order').on("click", function (e) {
