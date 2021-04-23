@@ -14,23 +14,23 @@
             <tr>
             <td>
             
-            <%= form.text_field :name %>
+            <%= form.text_field :name , required: true %>
 
             </td>
             <td>
                   
             
-            <%= form.number_field :amount, step: :any %>
+            <%= form.number_field :amount, step: :any, required: true %>
 
             </td>
             <td>
 
-            <%= form.number_field :price, step: :any %>
+            <%= form.number_field :price, step: :any, required: true %>
       
       
             </td>
             <td>
-            <%= form.text_field :comment %>
+            <%= form.text_field :comment, required: true %>
 
             </td>
             </tr>
