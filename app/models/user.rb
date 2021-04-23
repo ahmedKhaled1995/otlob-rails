@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_many :groups
   has_many :orders
   has_many :items
+
+  # has_one :friend, class_name: 'OrderFriend',
+  # foreign_key: 'friend_id'
  
   has_many :sender_notification, class_name: 'Notification',
     foreign_key: 'sender_id'

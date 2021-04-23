@@ -1,5 +1,4 @@
 class OrderFriend < ApplicationRecord
   belongs_to :order
-  belongs_to :friend
-  # enum status: [:invited, :joined, :canceled]
+  belongs_to :friend, class_name: 'User'
 end

@@ -91,7 +91,11 @@ class OrdersController < ApplicationController
                 @get_value.each do |currentfriendid|
                   #@friends=Friend.find_by(id: currentfriendid)
                   @order_friend=OrderFriend.new
-                  @order_friend.friend_id=currentfriendid
+                  # My added code
+                  friend_email = Friend.find(currentfriendid).email
+                  friend_as_user = User.find_by(email: friend_email)
+                  # End of my added code
+                  @order_friend.friend_id = friend_as_user.id      # currentfriendid
                   @order_friend.order_id= @order.id
                     
                       if  @order_friend.save
