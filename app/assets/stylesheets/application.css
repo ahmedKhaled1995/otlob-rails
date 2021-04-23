@@ -71,3 +71,21 @@
     color: white;
     border-color: #1e1429; 
 }
+.fieldsetorder{
+    border-radius: 20px;
+    border: 1px #dad1e4 solid;
+    margin: 6% 4% 0% 4%;
+    padding: 2% 4%;
+    text-align: left; 
+    overflow-y: scroll;
+    height:500px
+}
+.legendorder{
+        margin-left: 0em;
+        padding: 0px 7px;
+        width: auto;
+        color: #312141;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: -webkit-body
+}

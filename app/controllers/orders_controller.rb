@@ -101,7 +101,7 @@ class OrdersController < ApplicationController
                           render :new
                       end
                 end
-                p "order is added----------------------"
+               
 
                 # Ahmad Khaled added code for inviting friends added to that order
                 # puts '******************************'
@@ -110,11 +110,13 @@ class OrdersController < ApplicationController
                 end
                 # puts '******************************'
 
-                redirect_to @order
+                
+                p "order is added----------------------"
+                redirect_to @order, notice: "order added successfully"
                 # format.html {flash[:notice] = 'Employee was successfully created.' and redirect_to action: "index"}   
               else
-                p "order is added----------------------"
-                redirect_to @order, notice: "Friend added successfully"
+                p "get_value=nil----------------------"
+                redirect_to @order
               end
             else
               p "order is not added-------------------"
@@ -124,7 +126,7 @@ class OrdersController < ApplicationController
         p "restaurant is added----------------------"
       else
         p "restaurant is not added-------------------"
-        redirect_to new_order_path, alert: "Order not added !!"
+        redirect_to new_order_path, alert: "Order not added !! Please fill in all the required fields"
 
         # render :new, notice: "Friend added successfully"
 
