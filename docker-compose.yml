@@ -1,6 +1,14 @@
 version: "3.8"
 services:
+    redis:
+        image: redis:3.3
+        
     database:
         image: postgres:12.6
         volumes:
             - db_data:/var/lib/postgresql/data
+        web:
+            # The root directory from which we're building.
+            build: .
+        volumes:
+            - .:/yala_notlob:cached
