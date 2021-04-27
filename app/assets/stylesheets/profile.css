@@ -12,11 +12,10 @@ body {
     /* background: linear-gradient(87deg, rgba(255,216,155,1) 0%, rgba(25,84,123,1) 100%); */
 }
 .username{
-    font-family: 'Fjalla One', sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: normal;
   margin-top:40px;
-
 }
 .usermail{
     margin-top:20px;
@@ -24,6 +23,7 @@ body {
     font-family: 'Fjalla One', sans-serif;
   letter-spacing: 0px;
   font-weight: normal;
+  font-size:20px;
 }
 
 .userpage {
@@ -106,7 +106,7 @@ color: #312141;
 }
 .tbraw{
   color: #312141;
-  font-size: medium;
+  font-size:medium;
 }
 
 .tbraw:hover {background-color:#e2e0e0;}
