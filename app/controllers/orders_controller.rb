@@ -86,7 +86,8 @@ class OrdersController < ApplicationController
             @order.restaurant_id= @restaurant.id
             @order.user_id= current_user.id
 
-            if @order.save
+            order_saved = @order.save
+            if order_saved
               if @get_value != nil
                 @get_value.each do |currentfriendid|
                   #@friends=Friend.find_by(id: currentfriendid)
@@ -130,7 +131,8 @@ class OrdersController < ApplicationController
         p "restaurant is added----------------------"
       else
         p "restaurant is not added-------------------"
-        redirect_to new_order_path, alert: "Order not added !! Please fill in all the required fields"
+        # redirect_to new_order_path, alert: "Order not added !! Please fill in all the required fields"
+        redirect_to new_order_path, alert: "Error! Please Enter a resturant name and menu must be an PNG or JPEG and not larger than 3MB"
 
         # render :new, notice: "Friend added successfully"
 
