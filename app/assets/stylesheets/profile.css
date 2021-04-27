@@ -44,6 +44,7 @@ body {
   border: 7px solid rgb(153, 142, 148);
 }
 .tag {
+  /* background-color: #251414; */
   color: white;
   padding: 10px;
   border-radius: 5px;
