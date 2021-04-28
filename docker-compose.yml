@@ -1,14 +1,49 @@
 version: "3.8"
 services:
     redis:
-        image: redis:3.3
-        
-    database:
-        image: postgres:12.6
+         image: redis
+         command: redis-server
+        #  volumes:
+        #      - 'redis:/data'
+    # db:
+    #     image: postgres:12.6
+    #     volumes:
+    #         - ./tmp/db:/var/lib/postgresql/data
+    #     environment:
+    #             POSTGRES_USER: otlob
+    #             POSTGRES_PASSWORD: 123456
+    web:
+        # The root directory from which we're building.
+        build: .
+
+        command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
         volumes:
-            - db_data:/var/lib/postgresql/data
-        web:
-            # The root directory from which we're building.
-            build: .
+            - .:/yala_notlob
+        ports:
+            - "3000:3000"
+        depends_on:
+             - redis
+
+    sidekiq:
+        depends_on:
+            - 'redis'
+        build: .
+        command: sidekiq -C config/sidekiq.yml.erb
         volumes:
-            - .:/yala_notlob:cached
+             - '.:/yala_notlob'
+        # env_file:
+        #      - '.env'
+
+    cable:
+        depends_on:
+            - 'redis'
+        build: .
+        command: puma -p 28080 cable/config.ru
+        ports:
+            - '28080:28080'
+        volumes:
+            - '.:/yala_notlob'
+        # env_file:
+        #      - '.env'
+    
+    
