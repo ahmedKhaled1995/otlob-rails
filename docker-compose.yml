@@ -31,8 +31,7 @@ services:
         command: sidekiq -C config/sidekiq.yml.erb
         volumes:
              - '.:/yala_notlob'
-        # env_file:
-        #      - '.env'
+        
 
     cable:
         depends_on:
